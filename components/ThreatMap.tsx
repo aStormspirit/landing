@@ -29,9 +29,9 @@ const EVENTS = [
 
 const TAG: Record<string, string> = { ok: "[OK]", warn: "[--]", bad: "[!!]" };
 const CLS: Record<string, string> = {
-  ok:   "text-[#00ff9d]",
+  ok: "text-[#00ff9d]",
   warn: "text-[#ffb84a]",
-  bad:  "text-[#ff3a6e]",
+  bad: "text-[#ff3a6e]",
 };
 
 export default function ThreatMap() {
@@ -46,7 +46,7 @@ export default function ThreatMap() {
 
   useEffect(() => {
     let mounted = true;
-    const timers: ReturnType<typeof setInterval | typeof setTimeout>[] = [];
+    const timers: ReturnType<typeof setInterval>[] = [];
 
     (async () => {
       const [d3mod, topo] = await Promise.all([
@@ -62,18 +62,19 @@ export default function ThreatMap() {
 
       const svg = d3mod.select(svgRef.current);
 
-      // Render dot world map
       try {
         const world = await fetch(
           "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
         ).then((r) => r.json());
         if (!mounted) return;
 
-        const land = topo.feature(world, world.objects.countries as Parameters<typeof topo.feature>[1]);
+        const land = topo.feature(
+          world,
+          world.objects.countries as Parameters<typeof topo.feature>[1]
+        );
         const dots: [number, number][] = [];
-        const spacing = 5;
-        for (let x = 0; x < W; x += spacing) {
-          for (let y = 0; y < H; y += spacing) {
+        for (let x = 0; x < W; x += 5) {
+          for (let y = 0; y < H; y += 5) {
             const c = projection.invert?.([x, y]);
             if (c && c[1] > -58 && c[1] < 82 && d3mod.geoContains(land, c)) {
               dots.push([x, y]);
@@ -94,28 +95,18 @@ export default function ThreatMap() {
         return;
       }
 
-      // Spawn pulse ring at projected coords
       const spawnPulseAt = (x: number, y: number, scale = 1) => {
         if (!mounted) return;
         const g = svg.select("#pulses").append("g")
           .attr("transform", `translate(${x},${y})`);
-
         g.append("circle")
-          .attr("r", 0)
-          .attr("fill", "none")
-          .attr("stroke", "#ff3a6e")
-          .attr("stroke-width", 1)
-          .attr("opacity", 0.85)
+          .attr("r", 0).attr("fill", "none")
+          .attr("stroke", "#ff3a6e").attr("stroke-width", 1).attr("opacity", 0.85)
           .transition().duration(1800)
-          .attr("r", 18 * scale)
-          .attr("opacity", 0)
-          .remove();
-
+          .attr("r", 18 * scale).attr("opacity", 0).remove();
         g.append("circle")
-          .attr("r", 2.4 * scale)
-          .attr("fill", "#ff3a6e")
-          .transition().duration(1800)
-          .attr("opacity", 0)
+          .attr("r", 2.4 * scale).attr("fill", "#ff3a6e")
+          .transition().duration(1800).attr("opacity", 0)
           .on("end", () => g.remove());
       };
 
@@ -131,45 +122,36 @@ export default function ThreatMap() {
         const a = CITIES[Math.floor(Math.random() * CITIES.length)];
         let b = a;
         while (b === a) b = CITIES[Math.floor(Math.random() * CITIES.length)];
-
         const [x1, y1] = projection(a)!;
         const [x2, y2] = projection(b)!;
         const mx = (x1 + x2) / 2;
         const my = (y1 + y2) / 2 - Math.abs(x2 - x1) * 0.32 - 20;
 
         const path = svg.select("#arcs").append("path")
-          .attr("fill", "none")
-          .attr("stroke", "#ff3a6e")
-          .attr("stroke-width", 1.2)
-          .attr("stroke-linecap", "round")
+          .attr("fill", "none").attr("stroke", "#ff3a6e")
+          .attr("stroke-width", 1.2).attr("stroke-linecap", "round")
           .attr("d", `M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`);
 
         const len = (path.node() as SVGPathElement).getTotalLength();
         path
           .attr("stroke-dasharray", `${len} ${len}`)
-          .attr("stroke-dashoffset", len)
-          .attr("opacity", 0.9)
+          .attr("stroke-dashoffset", len).attr("opacity", 0.9)
           .transition().duration(1400).ease(d3mod.easeCubicInOut)
           .attr("stroke-dashoffset", 0)
-          .transition().duration(700)
-          .attr("opacity", 0)
-          .remove();
+          .transition().duration(700).attr("opacity", 0).remove();
 
         spawnPulseAt(x1, y1, 0.7);
-        const t = setTimeout(() => spawnPulseAt(x2, y2, 1.1), 1400);
-        timers.push(t);
+        setTimeout(() => spawnPulseAt(x2, y2, 1.1), 1400);
       };
 
       timers.push(setInterval(spawnPulse, 650));
-      timers.push(setInterval(spawnArc,  1100));
+      timers.push(setInterval(spawnArc, 1100));
 
-      // Counters
       let conn = 14237, threats = 0, blocked = 47;
       const fmt = (n: number) => n.toLocaleString("en-US");
-
       timers.push(setInterval(() => {
         if (!mounted) return;
-        conn    += Math.floor(Math.random() * 9) - 3;
+        conn += Math.floor(Math.random() * 9) - 3;
         if (Math.random() < 0.45) threats++;
         if (Math.random() < 0.65) blocked++;
         if (connRef.current)    connRef.current.textContent    = fmt(conn);
@@ -178,7 +160,6 @@ export default function ThreatMap() {
         if (latRef.current)     latRef.current.textContent     = `${8 + Math.floor(Math.random() * 10)}ms`;
       }, 800));
 
-      // Bottom bar
       let pct = 67;
       timers.push(setInterval(() => {
         if (!mounted || !fillRef.current) return;
@@ -186,20 +167,17 @@ export default function ThreatMap() {
         fillRef.current.style.width = pct + "%";
       }, 1500));
 
-      // Terminal log
       timers.push(setInterval(() => {
         if (!mounted || !termRef.current) return;
         const e = EVENTS[Math.floor(Math.random() * EVENTS.length)];
-        const tag = TAG[e.t];
-        const cls = CLS[e.t];
         termRef.current.innerHTML =
-          `<span class="terminal-line"><span class="${cls}">${tag}</span> ${e.m}</span>`;
+          `<span class="terminal-line"><span class="${CLS[e.t]}">${TAG[e.t]}</span> ${e.m}</span>`;
       }, 1300));
     })();
 
     return () => {
       mounted = false;
-      timers.forEach((t) => clearInterval(t as ReturnType<typeof setInterval>));
+      timers.forEach(clearInterval);
     };
   }, []);
 
@@ -216,7 +194,8 @@ export default function ThreatMap() {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(80,200,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(80,200,255,0.04) 1px, transparent 1px)",
+            "linear-gradient(rgba(80,200,255,0.04) 1px, transparent 1px)," +
+            "linear-gradient(90deg, rgba(80,200,255,0.04) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       />
@@ -226,16 +205,16 @@ export default function ThreatMap() {
         <div className="flex justify-between items-center text-[10px] tracking-[0.12em] uppercase">
           <span className="text-[#50c8ff] font-semibold">⬢ Threat Intel — Global Monitor</span>
           <span className="text-[#5a7a9a]">SYS_ID 0xA47F-2C19</span>
-          <span className="flex items-center gap-1.5 text-[#00ff9d] font-medium live-indicator">Live</span>
+          <span className="live-indicator flex items-center text-[#00ff9d] font-medium">Live</span>
         </div>
 
         {/* Progress rows */}
-        {["Scan", "Feed"].map((label, i) => (
+        {(["Scan", "Feed"] as const).map((label, i) => (
           <div key={label} className="flex items-center gap-2 text-[9px] text-[#5a7a9a] tracking-[0.14em]">
             <span className="w-[44px]">{label}</span>
-            <div className="flex-1 h-[3px] rounded-sm overflow-hidden" style={{ background: "rgba(80,200,255,0.08)" }}>
+            <div className="relative flex-1 h-[3px] rounded-sm overflow-hidden" style={{ background: "rgba(80,200,255,0.08)" }}>
               <div
-                className="absolute h-full w-[30%] scan-bar"
+                className="scan-bar h-full w-[30%]"
                 style={{
                   background: "linear-gradient(90deg, transparent, #50c8ff 50%, transparent)",
                   animationDelay: i === 1 ? "-1.1s" : "0s",
@@ -248,12 +227,12 @@ export default function ThreatMap() {
 
         {/* SVG Map */}
         <div
-          className="relative flex-1 border overflow-hidden map-scan"
-          style={{ borderColor: "rgba(80,200,255,0.15)", background: "rgba(0,8,20,0.5)" }}
+          className="relative flex-1 map-scan overflow-hidden"
+          style={{ border: "1px solid rgba(80,200,255,0.15)", background: "rgba(0,8,20,0.5)" }}
         >
           <div
             ref={loadRef}
-            className="absolute inset-0 flex items-center justify-center text-[#50c8ff] text-[10px] tracking-[0.2em] transition-opacity duration-400"
+            className="absolute inset-0 flex items-center justify-center text-[#50c8ff] text-[10px] tracking-[0.2em] transition-opacity duration-500"
           >
             Initializing satellite link…
           </div>
@@ -271,13 +250,13 @@ export default function ThreatMap() {
 
         {/* Stats */}
         <div className="grid grid-cols-5 gap-1.5">
-          {[
-            { label: "Connections", ref: connRef,    val: "14,237", alert: false },
-            { label: "Threats",     ref: threatRef,  val: "0",      alert: true  },
-            { label: "Blocked",     ref: blockedRef, val: "47",     alert: false },
-            { label: "Latency",     ref: latRef,     val: "12ms",   alert: false },
-            { label: "Uptime",      ref: null,       val: "99.97%", alert: false },
-          ].map(({ label, ref: statRef, val, alert }) => (
+          {([
+            { label: "Connections", ref: connRef,    init: "14,237", alert: false },
+            { label: "Threats",     ref: threatRef,  init: "0",      alert: true  },
+            { label: "Blocked",     ref: blockedRef, init: "47",     alert: false },
+            { label: "Latency",     ref: latRef,     init: "12ms",   alert: false },
+            { label: "Uptime",      ref: null,       init: "99.97%", alert: false },
+          ] as const).map(({ label, ref: statRef, init, alert }) => (
             <div
               key={label}
               className="pl-2 py-1.5"
@@ -291,7 +270,7 @@ export default function ThreatMap() {
                 className="text-[13px] font-semibold tabular-nums"
                 style={{ color: alert ? "#ff3a6e" : "#50c8ff" }}
               >
-                {statRef ? <span ref={statRef}>{val}</span> : val}
+                {statRef ? <span ref={statRef}>{init}</span> : init}
               </div>
             </div>
           ))}
@@ -301,20 +280,18 @@ export default function ThreatMap() {
         <div className="h-1.5 rounded-sm overflow-hidden" style={{ background: "rgba(80,200,255,0.08)" }}>
           <div
             ref={fillRef}
-            className="h-full rounded-sm transition-[width] duration-600"
+            className="h-full rounded-sm"
             style={{
               width: "67%",
               background: "linear-gradient(90deg, #50c8ff, #00ff9d)",
               boxShadow: "0 0 12px rgba(80,200,255,0.5)",
+              transition: "width 0.6s ease-out",
             }}
           />
         </div>
 
         {/* Terminal */}
-        <div
-          ref={termRef}
-          className="text-[9px] text-[#5a7a9a] h-[14px] overflow-hidden tracking-[0.05em]"
-        />
+        <div ref={termRef} className="text-[9px] text-[#5a7a9a] h-[14px] overflow-hidden tracking-[0.05em]" />
       </div>
     </div>
   );

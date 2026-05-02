@@ -8,9 +8,7 @@
   --color-muted:  #d5c4ab;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: #131313;
@@ -50,7 +48,7 @@ body {
 .nav-link:hover::after { width: 100%; }
 .nav-link:hover { color: #fff; }
 
-/* ThreatMap animations */
+/* ── ThreatMap ───────────────────────────────────────────── */
 @keyframes pulse-live {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.35; }
@@ -93,10 +91,8 @@ body {
   z-index: 2;
 }
 
-.terminal-line {
-  animation: terminal-in 0.4s ease-out;
-}
 @keyframes terminal-in {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+.terminal-line { animation: terminal-in 0.4s ease-out; }

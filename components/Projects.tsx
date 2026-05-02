@@ -36,7 +36,7 @@ export default function Projects() {
         {/* Bento grid */}
         <div className="grid grid-cols-3 gap-6" style={{ height: 800 }}>
 
-          {/* Large card */}
+          {/* Large card with animated ThreatMap background */}
           <div className="col-span-2 row-span-2 glass relative overflow-hidden flex flex-col justify-end">
             <ThreatMap />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
