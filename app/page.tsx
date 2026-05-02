@@ -5,12 +5,13 @@ import Projects from "@/components/Projects";
 import TechStack from "@/components/TechStack";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import BottomNavBar from "@/components/BottomNavBar";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="pb-16 md:pb-0">
         <Hero />
         <About />
         <Projects />
@@ -18,6 +19,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <BottomNavBar />
     </>
   );
 }

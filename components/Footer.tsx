@@ -2,7 +2,7 @@ const LINKS = ["GITHUB", "LINKEDIN", "TWITTER", "RESUME"] as const;
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-white/10 py-[48px]">
+    <footer className="hidden md:block bg-black border-t border-white/10 py-[48px]">
       <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between">
         <span className="font-[family-name:var(--font-space-grotesk)] font-bold text-[12px] text-[#f59e0b] tracking-[0.1em] uppercase">
           © 2024 ARCHITECT_PORTFOLIO // SYSTEM_STABLE
