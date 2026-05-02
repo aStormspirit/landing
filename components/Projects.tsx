@@ -90,8 +90,8 @@ export default function Projects() {
         <div className="hidden md:grid grid-cols-3 gap-6" style={{ height: 800 }}>
           <div className="col-span-2 row-span-2 glass relative overflow-hidden flex flex-col justify-end">
             <ThreatMap />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
-            <div className="relative p-8 flex flex-col gap-2">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none z-[11]" />
+            <div className="relative z-[12] p-8 flex flex-col gap-2">
               <div className="flex gap-2">
                 <Tag label="CYBER_SEC" accent />
                 <Tag label="REACT" />
