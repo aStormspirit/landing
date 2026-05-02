@@ -14,38 +14,16 @@ const CITIES: [number, number][] = [
   [114.2, 22.3], [106.8, -6.2],
 ];
 
-const EVENTS = [
-  { t: "ok",   m: "ssh handshake from 203.0.113.42" },
-  { t: "bad",  m: "anomaly: port scan from 198.51.100.7" },
-  { t: "ok",   m: "tls negotiated — cipher TLS_AES_256_GCM" },
-  { t: "warn", m: "firewall drop udp/53 from 192.0.2.18" },
-  { t: "bad",  m: "geo-block: incoming RU/Vladivostok" },
-  { t: "ok",   m: "cert validated — sha256:8f3a9b2e..." },
-  { t: "warn", m: "rate-limit hit /api/v1/login" },
-  { t: "bad",  m: "brute-force detected — banned 24h" },
-  { t: "ok",   m: "backup checkpoint complete" },
-  { t: "warn", m: "unusual traffic from AS-15169" },
-];
-
-const TAG: Record<string, string> = { ok: "[OK]", warn: "[--]", bad: "[!!]" };
-const CLS: Record<string, string> = {
-  ok: "text-[#00ff9d]",
-  warn: "text-[#ffb84a]",
-  bad: "text-[#ff3a6e]",
-};
-
 export default function ThreatMap() {
-  const svgRef     = useRef<SVGSVGElement>(null);
-  const fillRef    = useRef<HTMLDivElement>(null);
-  const termRef    = useRef<HTMLDivElement>(null);
-  const connRef    = useRef<HTMLSpanElement>(null);
-  const threatRef  = useRef<HTMLSpanElement>(null);
-  const blockedRef = useRef<HTMLSpanElement>(null);
-  const latRef     = useRef<HTMLSpanElement>(null);
-  const loadRef    = useRef<HTMLDivElement>(null);
+  const svgRef  = useRef<SVGSVGElement>(null);
+  const loadRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let mounted = true;
+    let isVisible = !document.hidden;
+    const onVisibility = () => { isVisible = !document.hidden; };
+    document.addEventListener("visibilitychange", onVisibility);
+
     const timers: ReturnType<typeof setInterval>[] = [];
 
     (async () => {
@@ -111,14 +89,14 @@ export default function ThreatMap() {
       };
 
       const spawnPulse = () => {
-        if (!mounted) return;
+        if (!mounted || !isVisible) return;
         const c = CITIES[Math.floor(Math.random() * CITIES.length)];
         const [x, y] = projection(c)!;
         spawnPulseAt(x, y);
       };
 
       const spawnArc = () => {
-        if (!mounted) return;
+        if (!mounted || !isVisible) return;
         const a = CITIES[Math.floor(Math.random() * CITIES.length)];
         let b = a;
         while (b === a) b = CITIES[Math.floor(Math.random() * CITIES.length)];
@@ -146,37 +124,11 @@ export default function ThreatMap() {
 
       timers.push(setInterval(spawnPulse, 650));
       timers.push(setInterval(spawnArc, 1100));
-
-      let conn = 14237, threats = 0, blocked = 47;
-      const fmt = (n: number) => n.toLocaleString("en-US");
-      timers.push(setInterval(() => {
-        if (!mounted) return;
-        conn += Math.floor(Math.random() * 9) - 3;
-        if (Math.random() < 0.45) threats++;
-        if (Math.random() < 0.65) blocked++;
-        if (connRef.current)    connRef.current.textContent    = fmt(conn);
-        if (threatRef.current)  threatRef.current.textContent  = fmt(threats);
-        if (blockedRef.current) blockedRef.current.textContent = fmt(blocked);
-        if (latRef.current)     latRef.current.textContent     = `${8 + Math.floor(Math.random() * 10)}ms`;
-      }, 800));
-
-      let pct = 67;
-      timers.push(setInterval(() => {
-        if (!mounted || !fillRef.current) return;
-        pct = Math.max(35, Math.min(92, pct + (Math.random() * 10 - 5)));
-        fillRef.current.style.width = pct + "%";
-      }, 1500));
-
-      timers.push(setInterval(() => {
-        if (!mounted || !termRef.current) return;
-        const e = EVENTS[Math.floor(Math.random() * EVENTS.length)];
-        termRef.current.innerHTML =
-          `<span class="terminal-line"><span class="${CLS[e.t]}">${TAG[e.t]}</span> ${e.m}</span>`;
-      }, 1300));
     })();
 
     return () => {
       mounted = false;
+      document.removeEventListener("visibilitychange", onVisibility);
       timers.forEach(clearInterval);
     };
   }, []);
@@ -204,7 +156,7 @@ export default function ThreatMap() {
         {/* Header */}
         <div className="flex justify-between items-center text-[10px] tracking-[0.12em] uppercase">
           <span className="text-[#50c8ff] font-semibold">⬢ Threat Intel — Global Monitor</span>
-          <span className="text-[#5a7a9a]">SYS_ID 0xA47F-2C19</span>
+          <span className="text-[#5a7a9a]">SYS_ID 0xA47F-2C19 // NODE 04</span>
           <span className="live-indicator flex items-center text-[#00ff9d] font-medium">Live</span>
         </div>
 
@@ -247,51 +199,6 @@ export default function ThreatMap() {
             <g id="pulses" />
           </svg>
         </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-5 gap-1.5">
-          {([
-            { label: "Connections", ref: connRef,    init: "14,237", alert: false },
-            { label: "Threats",     ref: threatRef,  init: "0",      alert: true  },
-            { label: "Blocked",     ref: blockedRef, init: "47",     alert: false },
-            { label: "Latency",     ref: latRef,     init: "12ms",   alert: false },
-            { label: "Uptime",      ref: null,       init: "99.97%", alert: false },
-          ] as const).map(({ label, ref: statRef, init, alert }) => (
-            <div
-              key={label}
-              className="pl-2 py-1.5"
-              style={{
-                borderLeft: `2px solid ${alert ? "#ff3a6e" : "#50c8ff"}`,
-                background: `rgba(${alert ? "255,58,110" : "80,200,255"},0.04)`,
-              }}
-            >
-              <div className="text-[8px] text-[#5a7a9a] tracking-[0.18em] uppercase mb-0.5">{label}</div>
-              <div
-                className="text-[13px] font-semibold tabular-nums"
-                style={{ color: alert ? "#ff3a6e" : "#50c8ff" }}
-              >
-                {statRef ? <span ref={statRef}>{init}</span> : init}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom bar */}
-        <div className="h-1.5 rounded-sm overflow-hidden" style={{ background: "rgba(80,200,255,0.08)" }}>
-          <div
-            ref={fillRef}
-            className="h-full rounded-sm"
-            style={{
-              width: "67%",
-              background: "linear-gradient(90deg, #50c8ff, #00ff9d)",
-              boxShadow: "0 0 12px rgba(80,200,255,0.5)",
-              transition: "width 0.6s ease-out",
-            }}
-          />
-        </div>
-
-        {/* Terminal */}
-        <div ref={termRef} className="text-[9px] text-[#5a7a9a] h-[14px] overflow-hidden tracking-[0.05em]" />
       </div>
     </div>
   );
