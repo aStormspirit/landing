@@ -1,4 +1,6 @@
-const LARGE_CARD_IMG = "https://www.figma.com/api/mcp/asset/d253a347-9f81-48f7-a510-b80e1cdac748";
+"use client";
+import dynamic from "next/dynamic";
+const ThreatMap = dynamic(() => import("./ThreatMap"), { ssr: false });
 
 function ArrowIcon({ className = "" }: { className?: string }) {
   return (
@@ -34,14 +36,10 @@ export default function Projects() {
         {/* Bento grid */}
         <div className="grid grid-cols-3 gap-6" style={{ height: 800 }}>
 
-          {/* Large card */}
+          {/* Large card with animated ThreatMap background */}
           <div className="col-span-2 row-span-2 glass relative overflow-hidden flex flex-col justify-end">
-            <img
-              src={LARGE_CARD_IMG}
-              alt="Neural Shield"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+            <ThreatMap />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
             <div className="relative p-8 flex flex-col gap-2">
               <div className="flex gap-2">
                 <span className="border border-[#ffb800] text-[#ffb800] font-[family-name:var(--font-space-mono)] text-[10px] px-[9px] py-[5px]">

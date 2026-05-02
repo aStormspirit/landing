@@ -8,9 +8,7 @@
   --color-muted:  #d5c4ab;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: #131313;
@@ -49,3 +47,52 @@ body {
 }
 .nav-link:hover::after { width: 100%; }
 .nav-link:hover { color: #fff; }
+
+/* ── ThreatMap ───────────────────────────────────────────── */
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+.live-indicator::before {
+  content: '';
+  display: inline-block;
+  width: 7px; height: 7px;
+  background: #00ff9d;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ff9d;
+  animation: pulse-live 1.4s ease-in-out infinite;
+  margin-right: 6px;
+}
+
+@keyframes scan-bar-anim {
+  0%   { left: -30%; }
+  100% { left: 110%; }
+}
+.scan-bar {
+  position: absolute;
+  animation: scan-bar-anim 2.5s linear infinite;
+}
+
+@keyframes map-scan-anim {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(400%); }
+}
+.map-scan::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 25%;
+  background: linear-gradient(180deg,
+    rgba(80,200,255,0.06) 0%,
+    rgba(80,200,255,0.02) 60%,
+    transparent 100%);
+  animation: map-scan-anim 8s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes terminal-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.terminal-line { animation: terminal-in 0.4s ease-out; }
