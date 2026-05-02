@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shinka.DEV</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            grotesk: ['Space Grotesk', 'sans-serif'],
+            inter:   ['Inter', 'sans-serif'],
+            mono:    ['Space Mono', 'monospace'],
+          },
+          colors: {
+            amber:   '#ffb800',
+            dark:    '#131313',
+            darker:  '#0e0e0e',
+            card:    'rgba(32,31,31,0.7)',
+            text:    '#d5c4ab',
+            brown:   '#6b4c00',
+          },
+          letterSpacing: {
+            tighter2: '-0.05em',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #131313; }
+
+    /* Gradient blob */
+    .hero-blob {
+      background: radial-gradient(circle, rgba(255,184,0,0.15) 0%, rgba(255,184,0,0) 70%);
+    }
+
+    /* Glass card */
+    .glass {
+      background: rgba(32,31,31,0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Scroll indicator animation */
+    @keyframes scrollFade {
+      0%   { opacity: 0.4; transform: scaleY(0.6); }
+      50%  { opacity: 0.8; transform: scaleY(1); }
+      100% { opacity: 0.4; transform: scaleY(0.6); }
+    }
+    .scroll-line { animation: scrollFade 2s ease-in-out infinite; transform-origin: top; }
+
+    /* Hover underline for nav */
+    .nav-link { position: relative; transition: color .2s; }
+    .nav-link::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: #ffb800;
+      transition: width .25s;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover { color: #fff; }
+
+    /* Image grayscale overlay (about portrait) */
+    .portrait-img {
+      filter: grayscale(100%);
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Button hover */
+    .btn-primary { transition: filter .2s; }
+    .btn-primary:hover { filter: brightness(1.1); }
+    .btn-outline { transition: background .2s, color .2s; }
+    .btn-outline:hover { background: rgba(255,184,0,0.08); }
+  </style>
+</head>
+<body class="relative text-white overflow-x-hidden">
+
+  <!-- ═══════════════════════════════════════════════════════ HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass border-t-0 border-l-0 border-r-0 border-b border-white/10">
+    <div class="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
+      <span class="font-grotesk font-bold text-[20px] text-amber tracking-[-0.05em] uppercase">Shinka.DEV</span>
+
+      <nav class="flex items-center gap-6">
+        <a href="#about"    class="nav-link font-grotesk text-white/60 text-[16px]">About</a>
+        <a href="#projects" class="nav-link font-grotesk text-white/60 text-[16px]">Projects</a>
+        <a href="#stack"    class="nav-link font-grotesk text-white/60 text-[16px]">Stack</a>
+        <a href="#contact"  class="nav-link font-grotesk text-white/60 text-[16px]">Contact</a>
+        <div class="pl-4">
+          <a href="#contact" class="btn-primary bg-amber text-brown font-inter font-semibold text-[16px] px-6 py-2 rounded-[4px] inline-block cursor-pointer">
+            Hire Me
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════ HERO -->
+  <section class="relative bg-[#131313] flex items-center justify-center overflow-hidden py-[100px] pt-[164px] min-h-screen">
+    <!-- Radial blob -->
+    <div class="hero-blob absolute size-[800px] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <span class="font-mono text-[12px] tracking-[0.1em] text-[#e5e2e1] uppercase">Scroll</span>
+      <div class="scroll-line w-px h-12 bg-gradient-to-b from-amber to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-[1280px] px-6">
+      <div class="max-w-[896px] flex flex-col gap-[14px]">
+
+        <!-- Status badge -->
+        <div class="flex items-center gap-2">
+          <div class="size-2 rounded-full bg-amber shadow-[0_0_8px_#ffb800]"></div>
+          <span class="font-mono text-amber text-[12px] tracking-[0.1em]">SYSTEM_STATUS: OPERATIONAL</span>
+        </div>
+
+        <!-- Headline -->
+        <div>
+          <h1 class="font-grotesk font-bold text-[64px] leading-[0.9] tracking-[-0.05em] text-white">ARCHITECTING</h1>
+          <h1 class="font-grotesk font-bold text-[64px] leading-[0.9] tracking-[-0.05em] text-amber">DIGITAL ECOSYSTEMS</h1>
+        </div>
+
+        <!-- Description -->
+        <p class="font-inter text-text text-[18px] leading-[1.6] max-w-[672px] mt-1">
+          Alex Rivera — Senior IT Specialist &amp; Full-Stack Engineer. Specializing in high-performance infrastructure,
+          cloud-native solutions, and precision-engineered software.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex gap-6 items-center mt-[17px]">
+          <a href="#projects"
+             class="btn-primary bg-amber border border-amber text-brown font-grotesk text-[16px] px-[33px] py-[17px] inline-block cursor-pointer">
+            VIEW_PROJECTS
+          </a>
+          <a href="#"
+             class="btn-outline border border-amber text-amber font-grotesk text-[16px] px-[33px] py-[17px] inline-block cursor-pointer">
+            DOWNLOAD_RESUME
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ ABOUT -->
+  <section id="about" class="bg-dark py-[80px]">
+    <div class="max-w-[1280px] mx-auto px-6 grid grid-cols-12 gap-6 items-center">
+
+      <!-- Portrait -->
+      <div class="col-span-5 relative glass p-[5px]">
+        <div class="relative overflow-hidden" style="height:489px">
+          <img src="https://www.figma.com/api/mcp/asset/f993183f-5660-4f34-9660-4d45616927df"
+               alt="Portrait" class="portrait-img" />
+        </div>
+        <!-- Years badge -->
+        <div class="absolute -bottom-4 -right-4 bg-amber p-6">
+          <div class="font-grotesk font-bold text-[40px] leading-none tracking-[-0.01em] text-brown">12+</div>
+          <div class="font-grotesk text-[10px] text-brown leading-[1.25] mt-1">YEARS_OF<br>EXPERIENCE</div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="col-span-7 flex flex-col gap-6 py-[60px]">
+        <!-- Heading -->
+        <div class="flex items-center gap-4 mb-2">
+          <span class="font-grotesk font-bold text-amber text-[40px] tracking-[-0.01em]">01/</span>
+          <span class="font-grotesk font-bold text-white text-[40px] tracking-[-0.01em]">THE_ENGINEER</span>
+        </div>
+
+        <!-- Body -->
+        <p class="font-inter text-text text-[16px] leading-[1.5]">
+          I bridge the gap between complex technical infrastructure and seamless user experiences.
+          My approach is rooted in the "CAD-drawing" aesthetic—every line of code and every server
+          node must be placed with intent and precision.
+        </p>
+
+        <!-- 2-col details -->
+        <div class="grid grid-cols-2 gap-6">
+          <div class="border-l border-amber pl-[17px] flex flex-col gap-2">
+            <span class="font-mono text-amber text-[12px]">// SPECIALIZATION</span>
+            <span class="font-inter font-medium text-white text-[16px] leading-[1.5]">Cloud Architecture &amp; DevOps Automation</span>
+          </div>
+          <div class="border-l border-white/20 pl-[17px] flex flex-col gap-2">
+            <span class="font-mono text-white/40 text-[12px]">// PHILOSOPHY</span>
+            <span class="font-inter font-medium text-white text-[16px] leading-[1.5]">Performance is not a feature, it's a foundation.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ PROJECTS -->
+  <section id="projects" class="bg-darker py-[80px]">
+    <div class="max-w-[1280px] mx-auto px-6 flex flex-col gap-[80px]">
+
+      <!-- Section header -->
+      <div class="flex items-end justify-between">
+        <div class="flex flex-col gap-2">
+          <h2 class="font-grotesk font-bold text-white text-[40px] tracking-[-0.01em] leading-[1.2]">KEY_WORK</h2>
+          <span class="font-mono text-amber text-[13px]">DEPLOYED_SOLUTIONS_v4.2</span>
+        </div>
+        <a href="#" class="flex items-center gap-2 font-grotesk text-white/40 text-[16px] hover:text-white/70 transition-colors cursor-pointer">
+          VIEW_ALL_REPOS
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Bento grid -->
+      <div class="grid grid-cols-3 gap-6" style="height:800px">
+
+        <!-- Large card (spans 2 cols × 2 rows) -->
+        <div class="col-span-2 row-span-2 glass relative overflow-hidden flex flex-col justify-end">
+          <img src="https://www.figma.com/api/mcp/asset/d253a347-9f81-48f7-a510-b80e1cdac748"
+               alt="Neural Shield" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+          <div class="relative p-8 flex flex-col gap-2">
+            <!-- Tags -->
+            <div class="flex gap-2">
+              <span class="border border-amber text-amber font-mono text-[10px] px-[9px] py-[5px]">CYBER_SEC</span>
+              <span class="border border-white/20 text-white/60 font-mono text-[10px] px-[9px] py-[5px]">REACT</span>
+              <span class="border border-white/20 text-white/60 font-mono text-[10px] px-[9px] py-[5px]">AWS</span>
+            </div>
+            <h3 class="font-grotesk text-white text-[16px] leading-[1.5] mt-2">NEURAL_SHIELD INFRASTRUCTURE</h3>
+            <p class="font-inter text-text text-[16px] leading-[1.5] max-w-[576px] pb-4">
+              A high-performance security monitoring dashboard capable of processing
+              2.4 million events per second with zero-latency visualization.
+            </p>
+            <a href="#" class="btn-primary bg-amber text-brown font-grotesk text-[16px] px-6 py-2 inline-flex items-center gap-2 w-fit cursor-pointer">
+              CASE_STUDY
+              <svg width="11" height="11" viewBox="0 0 10 10" fill="none"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Small card 1 -->
+        <div class="glass flex flex-col justify-between p-[33px]">
+          <div class="flex flex-col gap-[7px]">
+            <span class="font-mono text-white/40 text-[12px]">PROJECT_02</span>
+            <h3 class="font-grotesk text-white text-[16px] leading-[1.5] mt-[9px]">CLOUD_STRATOS</h3>
+            <p class="font-inter text-text text-[16px] leading-[1.6]">
+              Automated multi-region AWS deployment pipeline reducing lead time by 75%.
+            </p>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="size-2 rounded-full bg-[#fe6b00]"></div>
+              <span class="font-mono text-white/60 text-[10px]">TERRAFORM</span>
+            </div>
+            <a href="#" class="cursor-pointer">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1V9" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Small card 2 -->
+        <div class="glass flex flex-col justify-between p-[33px]">
+          <div class="flex flex-col gap-[7px]">
+            <span class="font-mono text-white/40 text-[12px]">PROJECT_03</span>
+            <h3 class="font-grotesk text-white text-[16px] leading-[1.5] mt-[9px]">KUBE_MESH</h3>
+            <p class="font-inter text-text text-[16px] leading-[1.6]">
+              Service mesh orchestration for microservices environment with Istio.
+            </p>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="size-2 rounded-full bg-amber"></div>
+              <span class="font-mono text-white/60 text-[10px]">KUBERNETES</span>
+            </div>
+            <a href="#" class="cursor-pointer">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1V9" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ TECH STACK -->
+  <section id="stack" class="bg-dark py-[80px]">
+    <div class="max-w-[1280px] mx-auto px-6 flex flex-col gap-[80px]">
+
+      <!-- Heading -->
+      <div class="flex flex-col items-center gap-4">
+        <h2 class="font-grotesk font-bold text-white text-[40px] tracking-[-0.01em]">THE_TECH_STACK</h2>
+        <div class="bg-amber h-1 w-20"></div>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-6 gap-6">
+        <!-- NODE.JS -->
+        <div class="glass flex flex-col items-center gap-4 p-[25px]">
+          <div class="bg-amber/10 rounded-[4px] size-12 flex items-center justify-center">
+            <img src="https://www.figma.com/api/mcp/asset/21c2d216-d67b-436a-8324-210865d82540" alt="Node.js" class="w-[25px] h-[20px] object-contain" />
+          </div>
+          <span class="font-mono text-white/80 text-[12px] uppercase">NODE.JS</span>
+        </div>
+        <!-- AWS -->
+        <div class="glass flex flex-col items-center gap-4 p-[25px]">
+          <div class="bg-amber/10 rounded-[4px] size-12 flex items-center justify-center">
+            <img src="https://www.figma.com/api/mcp/asset/bc415dc6-788a-4394-9a87-62e003ab3278" alt="AWS" class="w-[27px] h-[20px] object-contain" />
+          </div>
+          <span class="font-mono text-white/80 text-[12px] uppercase">AWS</span>
+        </div>
+        <!-- REACT -->
+        <div class="glass flex flex-col items-center gap-4 p-[25px]">
+          <div class="bg-amber/10 rounded-[4px] size-12 flex items-center justify-center">
+            <img src="https://www.figma.com/api/mcp/asset/d945b7d2-2e2f-4a45-985f-ca376a057e58" alt="React" class="w-[25px] h-[20px] object-contain" />
+          </div>
+          <span class="font-mono text-white/80 text-[12px] uppercase">REACT</span>
+        </div>
+        <!-- POSTGRESQL -->
+        <div class="glass flex flex-col items-center gap-4 p-[25px]">
+          <div class="bg-amber/10 rounded-[4px] size-12 flex items-center justify-center">
+            <img src="https://www.figma.com/api/mcp/asset/7c7c9208-6317-4746-8136-61aa9c702463" alt="PostgreSQL" class="w-[22px] h-[22px] object-contain" />
+          </div>
+          <span class="font-mono text-white/80 text-[12px] uppercase">POSTGRESQL</span>
+        </div>
+        <!-- DOCKER -->
+        <div class="glass flex flex-col items-center gap-4 p-[25px]">
+          <div class="bg-amber/10 rounded-[4px] size-12 flex items-center justify-center">
+            <img src="https://www.figma.com/api/mcp/asset/3ac8261b-6651-481b-97b0-83a37dc7874f" alt="Docker" class="w-[22px] h-[22px] object-contain" />
+          </div>
+          <span class="font-mono text-white/80 text-[12px] uppercase">DOCKER</span>
+        </div>
+        <!-- OAUTH 2.0 -->
+        <div class="glass flex flex-col items-center gap-4 p-[25px]">
+          <div class="bg-amber/10 rounded-[4px] size-12 flex items-center justify-center">
+            <img src="https://www.figma.com/api/mcp/asset/a1dec599-6e98-47b3-9cf1-0d73880b6822" alt="OAuth 2.0" class="w-[20px] h-[25px] object-contain" />
+          </div>
+          <span class="font-mono text-white/80 text-[12px] uppercase">OAUTH 2.0</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ CONTACT -->
+  <section id="contact" class="bg-[#201f1f] py-[80px] px-6">
+    <div class="max-w-[1280px] mx-auto grid grid-cols-2 gap-[80px] items-center">
+
+      <!-- Left -->
+      <div class="flex flex-col gap-4">
+        <h2 class="font-grotesk font-bold text-[64px] tracking-[-0.02em] leading-[1]">
+          <span class="text-white">LET'S</span><br>
+          <span class="text-amber">CONNECT.</span>
+        </h2>
+        <p class="font-inter text-text text-[16px] leading-[1.5] max-w-[448px]">
+          Available for high-stakes technical projects, system audits, and architectural consulting.
+        </p>
+        <div class="flex flex-col gap-4 pt-4">
+          <a href="mailto:alex@rivera.dev" class="flex items-center gap-4 group cursor-pointer">
+            <div class="border border-white/10 flex items-center justify-center size-10 p-px group-hover:border-amber/50 transition-colors">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none"><rect x="1" y="1" width="18" height="14" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/><path d="M1 4L10 9.5L19 4" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/></svg>
+            </div>
+            <span class="font-inter text-white text-[16px] group-hover:text-amber transition-colors">ALEX@RIVERA.DEV</span>
+          </a>
+          <div class="flex items-center gap-4">
+            <div class="border border-white/10 flex items-center justify-center size-10 p-px">
+              <svg width="16" height="20" viewBox="0 0 16 20" fill="none"><path d="M8 10C9.657 10 11 8.657 11 7C11 5.343 9.657 4 8 4C6.343 4 5 5.343 5 7C5 8.657 6.343 10 8 10Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/><path d="M8 1C5.239 1 3 3.239 3 6C3 10 8 15 8 15C8 15 13 10 13 6C13 3.239 10.761 1 8 1Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/></svg>
+            </div>
+            <span class="font-inter text-white text-[16px]">SFO // HUB_NORTH</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="glass px-[33px] pt-[33px] pb-[49px]">
+        <form class="flex flex-col gap-6" onsubmit="return false">
+          <!-- Name -->
+          <div class="flex flex-col gap-1">
+            <label class="font-mono text-white/40 text-[10px] uppercase tracking-wider">FULL_NAME</label>
+            <input
+              type="text"
+              placeholder="USER_IDENTIFICATION"
+              class="bg-white/5 border border-white/20 px-[13px] py-[15px] font-inter text-[16px] text-white placeholder:text-white/10 outline-none focus:border-amber/50 transition-colors w-full"
+            />
+          </div>
+          <!-- Email -->
+          <div class="flex flex-col gap-1">
+            <label class="font-mono text-white/40 text-[10px] uppercase tracking-wider">EMAIL_ADDRESS</label>
+            <input
+              type="email"
+              placeholder="COMMS_CHANNEL"
+              class="bg-white/5 border border-white/20 px-[13px] py-[15px] font-inter text-[16px] text-white placeholder:text-white/10 outline-none focus:border-amber/50 transition-colors w-full"
+            />
+          </div>
+          <!-- Message -->
+          <div class="flex flex-col gap-1">
+            <label class="font-mono text-white/40 text-[10px] uppercase tracking-wider">MESSAGE_PAYLOAD</label>
+            <textarea
+              placeholder="DESCRIBE_PROJECT_SCOPE..."
+              rows="5"
+              class="bg-white/5 border border-white/20 px-[13px] pt-[13px] pb-[85px] font-inter text-[16px] text-white placeholder:text-white/10 outline-none focus:border-amber/50 transition-colors w-full resize-none"
+            ></textarea>
+          </div>
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="btn-primary bg-amber text-brown font-grotesk text-[16px] py-4 text-center w-full cursor-pointer"
+          >
+            SEND_TRANSMISSION
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ FOOTER -->
+  <footer class="bg-black border-t border-white/10 py-[48px]">
+    <div class="max-w-[1280px] mx-auto px-6 flex items-center justify-between">
+      <span class="font-grotesk font-bold text-[12px] text-[#f59e0b] tracking-[0.1em] uppercase">
+        © 2024 ARCHITECT_PORTFOLIO // SYSTEM_STABLE
+      </span>
+      <div class="flex gap-8">
+        <a href="#" class="font-grotesk text-[12px] text-white/40 tracking-[0.1em] uppercase hover:text-white/70 transition-colors">GITHUB</a>
+        <a href="#" class="font-grotesk text-[12px] text-white/40 tracking-[0.1em] uppercase hover:text-white/70 transition-colors">LINKEDIN</a>
+        <a href="#" class="font-grotesk text-[12px] text-white/40 tracking-[0.1em] uppercase hover:text-white/70 transition-colors">TWITTER</a>
+        <a href="#" class="font-grotesk text-[12px] text-white/40 tracking-[0.1em] uppercase hover:text-white/70 transition-colors">RESUME</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
