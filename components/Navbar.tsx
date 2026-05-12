@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const AVATAR = "https://www.figma.com/api/mcp/asset/f993183f-5660-4f34-9660-4d45616927df";
+const AVATAR = "/avatar.jpg";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);

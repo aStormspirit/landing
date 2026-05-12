@@ -1,10 +1,10 @@
 const ICONS: { name: string; src: string; w: number; h: number }[] = [
-  { name: "NODE.JS",    src: "https://www.figma.com/api/mcp/asset/21c2d216-d67b-436a-8324-210865d82540", w: 25, h: 20 },
-  { name: "AWS",        src: "https://www.figma.com/api/mcp/asset/bc415dc6-788a-4394-9a87-62e003ab3278", w: 27, h: 20 },
-  { name: "REACT",      src: "https://www.figma.com/api/mcp/asset/d945b7d2-2e2f-4a45-985f-ca376a057e58", w: 25, h: 20 },
-  { name: "POSTGRESQL", src: "https://www.figma.com/api/mcp/asset/7c7c9208-6317-4746-8136-61aa9c702463", w: 22, h: 22 },
-  { name: "DOCKER",     src: "https://www.figma.com/api/mcp/asset/3ac8261b-6651-481b-97b0-83a37dc7874f", w: 22, h: 22 },
-  { name: "OAUTH 2.0",  src: "https://www.figma.com/api/mcp/asset/a1dec599-6e98-47b3-9cf1-0d73880b6822", w: 20, h: 25 },
+  { name: "NODE.JS",    src: "/assets/icon-nodejs.svg",     w: 25, h: 20 },
+  { name: "AWS",        src: "/assets/icon-aws.svg",        w: 27, h: 20 },
+  { name: "REACT",      src: "/assets/icon-react.svg",      w: 25, h: 20 },
+  { name: "POSTGRESQL", src: "/assets/icon-postgresql.svg", w: 22, h: 22 },
+  { name: "DOCKER",     src: "/assets/icon-docker.svg",     w: 22, h: 22 },
+  { name: "OAUTH 2.0",  src: "/assets/icon-oauth.svg",      w: 20, h: 25 },
 ];
 
 export default function TechStack() {
