@@ -1,4 +1,4 @@
-const PORTRAIT = "https://www.figma.com/api/mcp/asset/f993183f-5660-4f34-9660-4d45616927df";
+const PORTRAIT = "/avatar.jpg";
 
 export default function About() {
   return (

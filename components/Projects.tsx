@@ -1,6 +1,5 @@
 "use client";
-import dynamic from "next/dynamic";
-const ThreatMap = dynamic(() => import("./ThreatMap"), { ssr: false });
+import ThreatMapLazy from "./ThreatMapLazy";
 
 function ArrowIcon({ className = "" }: { className?: string }) {
   return (
@@ -41,7 +40,7 @@ export default function Projects() {
             style={{ border: "1px solid rgba(255,184,0,0.1)", backdropFilter: "blur(6px)", background: "rgba(20,19,19,0.7)" }}
           >
             <div className="relative h-[220px] overflow-hidden">
-              <ThreatMap />
+              <ThreatMapLazy />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
             </div>
             <div className="p-6 flex flex-col gap-4">
@@ -89,7 +88,7 @@ export default function Projects() {
         {/* ── DESKTOP layout: bento grid ── */}
         <div className="hidden md:grid grid-cols-3 gap-6" style={{ height: 800 }}>
           <div className="col-span-2 row-span-2 glass relative overflow-hidden flex flex-col justify-end">
-            <ThreatMap />
+            <ThreatMapLazy />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none z-[11]" />
             <div className="relative z-[12] p-8 flex flex-col gap-2">
               <div className="flex gap-2">
