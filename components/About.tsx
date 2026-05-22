@@ -1,6 +1,11 @@
+import type { SiteMessages } from "@/messages/en";
 const PORTRAIT = "/avatar.jpg";
 
-export default function About() {
+type AboutProps = {
+  messages: SiteMessages["about"];
+};
+
+export default function About({ messages }: AboutProps) {
   return (
     <section id="about" className="bg-[#131313] py-[80px]">
       <div className="max-w-[1280px] mx-auto px-6 flex flex-col md:grid md:grid-cols-12 gap-8 md:gap-6 md:items-center">
@@ -16,7 +21,12 @@ export default function About() {
               7+
             </div>
             <div className="font-[family-name:var(--font-space-grotesk)] text-[10px] text-[#6b4c00] leading-[1.25] mt-1">
-              YEARS_OF<br />EXPERIENCE
+              {messages.yearsOfExperience.split("\n").map((line, index) => (
+                <span key={line}>
+                  {line}
+                  {index === 0 ? <br /> : null}
+                </span>
+              ))}
             </div>
           </div>
         </div>
@@ -25,34 +35,32 @@ export default function About() {
         <div className="md:col-span-7 flex flex-col gap-6 md:py-[60px]">
           <div className="flex items-center gap-3 md:gap-4 mb-0 md:mb-2">
             <span className="font-[family-name:var(--font-space-grotesk)] font-bold text-[#ffb800] text-[30px] md:text-[40px] tracking-[-0.01em]">
-              01/
+              {messages.sectionIndex}
             </span>
             <span className="font-[family-name:var(--font-space-grotesk)] font-bold text-white text-[30px] md:text-[40px] tracking-[-0.01em]">
-              THE_ENGINEER
+              {messages.sectionTitle}
             </span>
           </div>
 
           <p className="font-[family-name:var(--font-inter)] text-[#d5c4ab] text-[16px] leading-[1.5]">
-            I bridge the gap between complex technical infrastructure and seamless user experiences.
-            My approach is rooted in the &ldquo;CAD-drawing&rdquo; aesthetic—every line of code and every server
-            node must be placed with intent and precision.
+            {messages.description}
           </p>
 
           <div className="flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-6">
             <div className="border-l border-[#ffb800] pl-[17px] flex flex-col gap-1">
               <span className="font-[family-name:var(--font-space-mono)] text-[#ffb800] text-[10px]">
-                // SPECIALIZATION
+                {messages.specializationLabel}
               </span>
               <span className="font-[family-name:var(--font-inter)] font-medium text-white text-[16px] leading-[1.5]">
-                Cloud Architecture &amp; DevOps Automation
+                {messages.specializationValue}
               </span>
             </div>
             <div className="border-l border-white/20 pl-[17px] flex flex-col gap-1">
               <span className="font-[family-name:var(--font-space-mono)] text-white/40 text-[10px]">
-                // PHILOSOPHY
+                {messages.philosophyLabel}
               </span>
               <span className="font-[family-name:var(--font-inter)] font-medium text-white text-[16px] leading-[1.5]">
-                Performance is not a feature, it&apos;s a foundation.
+                {messages.philosophyValue}
               </span>
             </div>
           </div>

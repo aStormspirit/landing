@@ -1,5 +1,6 @@
 "use client";
 import ThreatMapLazy from "./ThreatMapLazy";
+import type { SiteMessages } from "@/messages/en";
 
 function ArrowIcon({ className = "" }: { className?: string }) {
   return (
@@ -9,7 +10,11 @@ function ArrowIcon({ className = "" }: { className?: string }) {
   );
 }
 
-export default function Projects() {
+type ProjectsProps = {
+  messages: SiteMessages["projects"];
+};
+
+export default function Projects({ messages }: ProjectsProps) {
   return (
     <section id="projects" className="bg-[#0e0e0e] py-[80px]">
       <div className="max-w-[1280px] mx-auto px-6 flex flex-col gap-[48px] md:gap-[80px]">
@@ -18,17 +23,17 @@ export default function Projects() {
         <div className="flex items-end justify-between">
           <div className="flex flex-col gap-2">
             <h2 className="font-[family-name:var(--font-space-grotesk)] font-bold text-white text-[30px] md:text-[40px] tracking-[-0.01em] leading-[1.2]">
-              KEY_WORK
+              {messages.heading}
             </h2>
             <span className="font-[family-name:var(--font-space-mono)] text-[#ffb800] text-[12px] md:text-[13px]">
-              DEPLOYED_SOLUTIONS_v4.2
+              {messages.subheading}
             </span>
           </div>
           <a
             href="#"
             className="hidden md:flex items-center gap-2 font-[family-name:var(--font-space-grotesk)] text-white/40 text-[16px] hover:text-white/70 transition-colors"
           >
-            VIEW_ALL_REPOS <ArrowIcon />
+            {messages.viewAllRepos} <ArrowIcon />
           </a>
         </div>
 
@@ -50,38 +55,37 @@ export default function Projects() {
                 <Tag label="AWS" />
               </div>
               <h3 className="font-[family-name:var(--font-space-grotesk)] text-white text-[16px] leading-[1.5]">
-                NEURAL_SHIELD INFRASTRUCTURE
+                {messages.featured.title}
               </h3>
               <p className="font-[family-name:var(--font-inter)] text-[#d5c4ab] text-[16px] leading-[1.5]">
-                A high-performance security monitoring dashboard capable of processing
-                2.4 million events per second with zero-latency visualization.
+                {messages.featured.description}
               </p>
               <a
                 href="#"
                 className="bg-[#ffb800] text-[#6b4c00] font-[family-name:var(--font-space-grotesk)] text-[16px] px-6 py-3 inline-flex items-center gap-2 w-fit transition-[filter] hover:brightness-110"
               >
-                CASE_STUDY <ArrowIcon />
+                {messages.featured.caseStudy} <ArrowIcon />
               </a>
             </div>
           </div>
 
           <SmallCardMobile
-            label="PROJECT_02"
-            title="CLOUD_STRATOS"
-            description="Automated multi-region AWS deployment pipeline reducing lead time by 75%."
+            label={messages.second.label}
+            title={messages.second.title}
+            description={messages.second.description}
             dotColor="#fe6b00"
-            tech="TERRAFORM"
+            tech={messages.second.tech}
           />
           <SmallCardMobile
-            label="PROJECT_03"
-            title="KUBE_MESH"
-            description="Service mesh orchestration for microservices environment with Istio."
+            label={messages.third.label}
+            title={messages.third.title}
+            description={messages.third.description}
             dotColor="#ffb800"
-            tech="KUBERNETES"
+            tech={messages.third.tech}
           />
 
           <a href="#" className="flex items-center justify-center gap-2 font-[family-name:var(--font-space-grotesk)] text-white/40 text-[16px] hover:text-white/70 transition-colors py-2">
-            VIEW_ALL_REPOS <ArrowIcon />
+            {messages.viewAllRepos} <ArrowIcon />
           </a>
         </div>
 
@@ -97,34 +101,33 @@ export default function Projects() {
                 <Tag label="AWS" />
               </div>
               <h3 className="font-[family-name:var(--font-space-grotesk)] text-white text-[16px] leading-[1.5] mt-2">
-                NEURAL_SHIELD INFRASTRUCTURE
+                {messages.featured.title}
               </h3>
               <p className="font-[family-name:var(--font-inter)] text-[#d5c4ab] text-[16px] leading-[1.5] max-w-[576px] pb-4">
-                A high-performance security monitoring dashboard capable of processing
-                2.4 million events per second with zero-latency visualization.
+                {messages.featured.description}
               </p>
               <a
                 href="#"
                 className="bg-[#ffb800] text-[#6b4c00] font-[family-name:var(--font-space-grotesk)] text-[16px] px-6 py-2 inline-flex items-center gap-2 w-fit transition-[filter] hover:brightness-110"
               >
-                CASE_STUDY <ArrowIcon />
+                {messages.featured.caseStudy} <ArrowIcon />
               </a>
             </div>
           </div>
 
           <SmallCard
-            label="PROJECT_02"
-            title="CLOUD_STRATOS"
-            description="Automated multi-region AWS deployment pipeline reducing lead time by 75%."
+            label={messages.second.label}
+            title={messages.second.title}
+            description={messages.second.description}
             dotColor="#fe6b00"
-            tech="TERRAFORM"
+            tech={messages.second.tech}
           />
           <SmallCard
-            label="PROJECT_03"
-            title="KUBE_MESH"
-            description="Service mesh orchestration for microservices environment with Istio."
+            label={messages.third.label}
+            title={messages.third.title}
+            description={messages.third.description}
             dotColor="#ffb800"
-            tech="KUBERNETES"
+            tech={messages.third.tech}
           />
         </div>
 

@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import type { Locale } from "@/lib/i18n";
+import type { SiteMessages } from "@/messages/en";
 
 const SECTIONS = ["about", "projects", "stack", "contact"] as const;
 
@@ -42,15 +44,20 @@ function ContactIcon({ active }: { active: boolean }) {
   );
 }
 
-const NAV = [
-  { id: "home",     label: "HOME",     href: "#",        Icon: HomeIcon },
-  { id: "projects", label: "PROJECTS", href: "#projects", Icon: ProjectsIcon },
-  { id: "stack",    label: "STACK",    href: "#stack",    Icon: StackIcon },
-  { id: "contact",  label: "CONTACT",  href: "#contact",  Icon: ContactIcon },
-] as const;
+type BottomNavProps = {
+  lang: Locale;
+  messages: SiteMessages["bottomNav"];
+};
 
-export default function BottomNavBar() {
+export default function BottomNavBar({ lang, messages }: BottomNavProps) {
   const [active, setActive] = useState<string>("home");
+
+  const nav = [
+    { id: "home", label: messages.home, href: `/${lang}`, Icon: HomeIcon },
+    { id: "projects", label: messages.projects, href: "#projects", Icon: ProjectsIcon },
+    { id: "stack", label: messages.stack, href: "#stack", Icon: StackIcon },
+    { id: "contact", label: messages.contact, href: "#contact", Icon: ContactIcon },
+  ] as const;
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -72,7 +79,7 @@ export default function BottomNavBar() {
       className="md:hidden fixed bottom-0 left-0 right-0 z-50 h-16 flex items-center border-t border-[#27272a]"
       style={{ backdropFilter: "blur(12px)", background: "rgba(9,9,11,0.9)" }}
     >
-      {NAV.map(({ id, label, href, Icon }) => {
+      {nav.map(({ id, label, href, Icon }) => {
         const isActive = active === id;
         return (
           <a

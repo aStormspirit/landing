@@ -1,10 +1,53 @@
 "use client";
-import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+import type { Locale } from "@/lib/i18n";
+import type { SiteMessages } from "@/messages/en";
 
 const AVATAR = "/avatar.jpg";
 
-export default function Navbar() {
+type NavbarMessages = SiteMessages["navbar"];
+
+type NavbarProps = {
+  lang: Locale;
+  messages: NavbarMessages;
+};
+
+export default function Navbar({ lang, messages }: NavbarProps) {
   const [open, setOpen] = useState(false);
+  const [hash, setHash] = useState("");
+  const pathname = usePathname();
+
+  const targetLocale: Locale = lang === "en" ? "ru" : "en";
+  const targetFlag = targetLocale === "ru" ? "🇷🇺" : "🇬🇧";
+  const targetLabel = targetLocale === "ru" ? "ru" : "eng";
+  const targetPath = useMemo(() => {
+    if (!pathname) {
+      return `/${targetLocale}`;
+    }
+
+    const localizedPath = pathname.replace(/^\/(en|ru)(?=\/|$)/, `/${targetLocale}`);
+    if (localizedPath === pathname) {
+      return `/${targetLocale}${pathname.startsWith("/") ? pathname : `/${pathname}`}`;
+    }
+
+    return localizedPath;
+  }, [pathname, targetLocale]);
+
+  useEffect(() => {
+    const updateHash = () => setHash(window.location.hash);
+    updateHash();
+    window.addEventListener("hashchange", updateHash);
+    return () => window.removeEventListener("hashchange", updateHash);
+  }, []);
+
+  const navItems = [
+    { id: "about", label: messages.about },
+    { id: "projects", label: messages.projects },
+    { id: "stack", label: messages.stack },
+    { id: "contact", label: messages.contact },
+  ];
 
   return (
     <>
@@ -19,7 +62,7 @@ export default function Navbar() {
             <button
               className="md:hidden text-white/60 hover:text-white transition-colors"
               onClick={() => setOpen(!open)}
-              aria-label="Toggle menu"
+              aria-label={messages.toggleMenuAria}
             >
               <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
                 <rect width="18" height="2" fill="currentColor" />
@@ -28,27 +71,38 @@ export default function Navbar() {
               </svg>
             </button>
             <span className="font-[family-name:var(--font-space-grotesk)] font-bold text-[20px] text-[#ffb800] tracking-[-0.05em] uppercase">
-              Shinka.DEV
+              {messages.brand}
             </span>
           </div>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6">
-            {["About", "Projects", "Stack", "Contact"].map((item) => (
+            {navItems.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.id}
+                href={`#${item.id}`}
                 className="nav-link font-[family-name:var(--font-space-grotesk)] text-white/60 text-[16px]"
               >
-                {item}
+                {item.label}
               </a>
             ))}
+            <div className="pl-4 border-l border-white/10 flex items-center">
+              <Link
+                href={`${targetPath}${hash}`}
+                aria-label={`${messages.languageLabel}: ${targetLocale.toUpperCase()}`}
+                title={`${messages.languageLabel}: ${targetLocale.toUpperCase()}`}
+                className="inline-flex items-center gap-2 font-[family-name:var(--font-space-grotesk)] text-[14px] text-white/80 hover:text-[#ffb800] transition-colors"
+              >
+                <span aria-hidden className="text-[18px] leading-none">{targetFlag}</span>
+                <span className="uppercase tracking-wide">{targetLabel}</span>
+              </Link>
+            </div>
             <div className="pl-4">
               <a
                 href="#contact"
                 className="bg-[#ffb800] text-[#6b4c00] font-[family-name:var(--font-inter)] font-semibold text-[16px] px-6 py-2 inline-block transition-[filter] hover:brightness-110"
               >
-                Hire Me
+                {messages.hireMe}
               </a>
             </div>
           </nav>
@@ -68,22 +122,34 @@ export default function Navbar() {
             className="relative border-b border-[#27272a] flex flex-col py-4 px-6 gap-2"
             style={{ backdropFilter: "blur(12px)", background: "rgba(9,9,11,0.95)" }}
           >
-            {["About", "Projects", "Stack", "Contact"].map((item) => (
+            {navItems.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.id}
+                href={`#${item.id}`}
                 onClick={() => setOpen(false)}
                 className="font-[family-name:var(--font-space-grotesk)] text-white/60 text-[18px] py-3 border-b border-white/5 hover:text-white transition-colors"
               >
-                {item}
+                {item.label}
               </a>
             ))}
+            <div className="flex items-center justify-end py-3 border-b border-white/5">
+              <Link
+                href={`${targetPath}${hash}`}
+                onClick={() => setOpen(false)}
+                aria-label={`${messages.languageLabel}: ${targetLocale.toUpperCase()}`}
+                title={`${messages.languageLabel}: ${targetLocale.toUpperCase()}`}
+                className="inline-flex items-center gap-2 font-[family-name:var(--font-space-grotesk)] text-[16px] text-white/80 hover:text-[#ffb800] transition-colors"
+              >
+                <span aria-hidden className="text-[20px] leading-none">{targetFlag}</span>
+                <span className="uppercase tracking-wide">{targetLabel}</span>
+              </Link>
+            </div>
             <a
               href="#contact"
               onClick={() => setOpen(false)}
               className="bg-[#ffb800] text-[#6b4c00] font-[family-name:var(--font-inter)] font-semibold text-[16px] px-6 py-3 text-center mt-2 transition-[filter] hover:brightness-110"
             >
-              Hire Me
+              {messages.hireMe}
             </a>
           </nav>
         </div>

@@ -1,6 +1,11 @@
 "use client";
+import type { SiteMessages } from "@/messages/en";
 
-export default function Contact() {
+type ContactProps = {
+  messages: SiteMessages["contact"];
+};
+
+export default function Contact({ messages }: ContactProps) {
   return (
     <section id="contact" className="bg-[#201f1f] py-[80px] px-6">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-[80px] md:items-center">
@@ -8,12 +13,12 @@ export default function Contact() {
         {/* Left: heading + links */}
         <div className="flex flex-col gap-4">
           <h2 className="font-[family-name:var(--font-space-grotesk)] font-bold text-[48px] md:text-[64px] tracking-[-0.02em] leading-[1]">
-            <span className="text-white">LET&apos;S</span>
+            <span className="text-white">{messages.titleLine1}</span>
             <br />
-            <span className="text-[#ffb800]">CONNECT.</span>
+            <span className="text-[#ffb800]">{messages.titleLine2}</span>
           </h2>
           <p className="font-[family-name:var(--font-inter)] text-[#d5c4ab] text-[16px] leading-[1.5] max-w-[448px]">
-            Available for high-stakes technical projects, system audits, and architectural consulting.
+            {messages.description}
           </p>
           <div className="flex flex-col gap-4 pt-2">
             <a href="mailto:alex@rivera.dev" className="flex items-center gap-4 group">
@@ -24,7 +29,7 @@ export default function Contact() {
                 </svg>
               </div>
               <span className="font-[family-name:var(--font-inter)] text-white text-[14px] md:text-[16px] group-hover:text-[#ffb800] transition-colors uppercase">
-                ALEX@RIVERA.DEV
+                {messages.email}
               </span>
             </a>
             <div className="flex items-center gap-4">
@@ -35,7 +40,7 @@ export default function Contact() {
                 </svg>
               </div>
               <span className="font-[family-name:var(--font-inter)] text-white text-[14px] md:text-[16px] uppercase">
-                SFO // HUB_NORTH
+                {messages.location}
               </span>
             </div>
           </div>
@@ -44,14 +49,14 @@ export default function Contact() {
         {/* Right: form */}
         <div className="glass px-[25px] md:px-[33px] pt-[25px] md:pt-[33px] pb-[40px] md:pb-[49px]">
           <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
-            <Field label="FULL_NAME" type="text" placeholder="USER_IDENTIFICATION" />
-            <Field label="EMAIL_ADDRESS" type="email" placeholder="COMMS_CHANNEL" />
+            <Field label={messages.fullNameLabel} type="text" placeholder={messages.fullNamePlaceholder} />
+            <Field label={messages.emailLabel} type="email" placeholder={messages.emailPlaceholder} />
             <div className="flex flex-col gap-1">
               <label className="font-[family-name:var(--font-space-mono)] text-white/40 text-[10px] uppercase tracking-wider">
-                MESSAGE_PAYLOAD
+                {messages.messageLabel}
               </label>
               <textarea
-                placeholder="DESCRIBE_PROJECT_SCOPE..."
+                placeholder={messages.messagePlaceholder}
                 rows={5}
                 className="bg-white/5 border border-white/20 px-[13px] pt-[13px] pb-[85px] font-[family-name:var(--font-inter)] text-[16px] text-white placeholder:text-white/10 outline-none focus:border-[#ffb800]/50 transition-colors w-full resize-none"
               />
@@ -60,7 +65,7 @@ export default function Contact() {
               type="submit"
               className="bg-[#ffb800] text-[#6b4c00] font-[family-name:var(--font-space-grotesk)] font-bold text-[16px] py-5 text-center w-full transition-[filter] hover:brightness-110 shadow-[0_0_10px_rgba(255,184,0,0.3)]"
             >
-              SEND_TRANSMISSION
+              {messages.submit}
             </button>
           </form>
         </div>

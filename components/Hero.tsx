@@ -1,4 +1,10 @@
-export default function Hero() {
+import type { SiteMessages } from "@/messages/en";
+
+type HeroProps = {
+  messages: SiteMessages["hero"];
+};
+
+export default function Hero({ messages }: HeroProps) {
   return (
     <section className="relative bg-[#131313] flex items-center justify-center overflow-hidden py-[100px] pt-[164px] pb-[100px] md:pb-[100px] min-h-screen">
       {/* Radial blob */}
@@ -10,7 +16,7 @@ export default function Hero() {
       {/* Scroll indicator — desktop only */}
       <div className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2 opacity-40">
         <span className="font-[family-name:var(--font-space-mono)] text-[12px] tracking-[0.1em] text-[#e5e2e1] uppercase">
-          Scroll
+          {messages.scroll}
         </span>
         <div className="scroll-line w-px h-12 bg-gradient-to-b from-[#ffb800] to-transparent" />
       </div>
@@ -22,24 +28,23 @@ export default function Hero() {
           <div className="flex items-center gap-2">
             <div className="size-2 rounded-full bg-[#ffb800] shadow-[0_0_8px_#ffb800]" />
             <span className="font-[family-name:var(--font-space-mono)] text-[#ffb800] text-[12px] tracking-[0.1em]">
-              SYSTEM_STATUS: OPERATIONAL
+              {messages.status}
             </span>
           </div>
 
           {/* Headline */}
           <div>
             <h1 className="font-[family-name:var(--font-space-grotesk)] font-bold text-[48px] md:text-[64px] leading-[0.9] tracking-[-0.05em] text-white">
-              ARCHITECTING
+              {messages.titleLine1}
             </h1>
             <h1 className="font-[family-name:var(--font-space-grotesk)] font-bold text-[48px] md:text-[64px] leading-[0.9] tracking-[-0.05em] text-[#ffb800]">
-              DIGITAL ECOSYSTEMS
+              {messages.titleLine2}
             </h1>
           </div>
 
           {/* Description */}
           <p className="font-[family-name:var(--font-inter)] text-[#d5c4ab] text-[16px] leading-[1.6] max-w-[672px] mt-1">
-            Alex Rivera — Senior IT Specialist &amp; Full-Stack Engineer. Specializing in high-performance
-            infrastructure, cloud-native solutions, and precision-engineered software.
+            {messages.description}
           </p>
 
           {/* CTAs — stacked on mobile, side by side on desktop */}
@@ -48,13 +53,13 @@ export default function Hero() {
               href="#projects"
               className="bg-[#ffb800] border border-[#ffb800] text-[#6b4c00] font-[family-name:var(--font-space-grotesk)] text-[16px] px-[33px] py-[17px] text-center inline-block transition-[filter] hover:brightness-110 shadow-[0_0_10px_rgba(255,184,0,0.3)]"
             >
-              VIEW_PROJECTS
+              {messages.viewProjects}
             </a>
             <a
               href="#"
               className="border border-[#ffb800] text-[#ffb800] font-[family-name:var(--font-space-grotesk)] text-[16px] px-[33px] py-[17px] text-center inline-block transition-[background] hover:bg-[rgba(255,184,0,0.08)]"
             >
-              DOWNLOAD_RESUME
+              {messages.downloadResume}
             </a>
           </div>
 

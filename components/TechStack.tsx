@@ -7,14 +7,18 @@ const ICONS: { name: string; src: string; w: number; h: number }[] = [
   { name: "OAUTH 2.0",  src: "/assets/icon-oauth.svg",      w: 20, h: 25 },
 ];
 
-export default function TechStack() {
+type TechStackProps = {
+  heading: string;
+};
+
+export default function TechStack({ heading }: TechStackProps) {
   return (
     <section id="stack" className="bg-[#131313] py-[80px]">
       <div className="max-w-[1280px] mx-auto px-6 flex flex-col gap-8 md:gap-[80px]">
 
         <div className="flex flex-col items-center gap-4">
           <h2 className="font-[family-name:var(--font-space-grotesk)] font-bold text-white text-[30px] md:text-[40px] tracking-[-0.01em] uppercase">
-            THE_TECH_STACK
+            {heading}
           </h2>
           <div className="bg-[#ffb800] h-[2px] w-16" />
         </div>
