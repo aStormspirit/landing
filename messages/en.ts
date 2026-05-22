@@ -15,7 +15,7 @@ export const enMessages = {
     titleLine1: "ARCHITECTING",
     titleLine2: "DIGITAL ECOSYSTEMS",
     description:
-      "Alex Rivera - Senior IT Specialist & Full-Stack Engineer. Specializing in high-performance infrastructure, cloud-native solutions, and precision-engineered software.",
+      "Shinkarenko Vladimir - Senior IT Specialist & Full-Stack Engineer. Specializing in high-performance infrastructure, cloud-native solutions, and precision-engineered software.",
     viewProjects: "VIEW_PROJECTS",
     downloadResume: "DOWNLOAD_RESUME",
   },
@@ -73,7 +73,12 @@ export const enMessages = {
   },
   footer: {
     copyright: "© 2024 ARCHITECT_PORTFOLIO // SYSTEM_STABLE",
-    links: ["GITHUB", "LINKEDIN", "TWITTER", "RESUME"],
+    links: [
+      { label: "GITHUB", href: "https://github.com/aStormspirit"},
+      { label: "LINKEDIN", href: "https://linkedin.com/in/your_username" },
+      { label: "TWITTER", href: "https://x.com/your_username" },
+      { label: "RESUME", href: "/resume.pdf" },
+    ],
   },
   bottomNav: {
     home: "HOME",

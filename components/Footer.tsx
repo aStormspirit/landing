@@ -14,11 +14,11 @@ export default function Footer({ messages }: FooterProps) {
         <div className="flex gap-8">
           {messages.links.map((link) => (
             <a
-              key={link}
-              href="#"
+              key={link.label}
+              href={link.href}
               className="font-[family-name:var(--font-space-grotesk)] text-[12px] text-white/40 tracking-[0.1em] uppercase hover:text-white/70 transition-colors"
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>

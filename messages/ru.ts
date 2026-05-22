@@ -59,8 +59,8 @@ export const ruMessages: SiteMessages = {
     heading: "ТЕХ_СТЕК",
   },
   contact: {
-    titleLine1: "ДАВАЙТЕ",
-    titleLine2: "СВЯЖЕМСЯ.",
+    titleLine1: "СВЯЗАТЬСЯ",
+    titleLine2: "СО МНОЙ.",
     description:
       "Открыт к технически сложным проектам, системным аудитам и архитектурному консалтингу.",
     email: "ALEX@RIVERA.DEV",
@@ -75,7 +75,12 @@ export const ruMessages: SiteMessages = {
   },
   footer: {
     copyright: "© 2024 ARCHITECT_PORTFOLIO // SYSTEM_STABLE",
-    links: ["GITHUB", "LINKEDIN", "TWITTER", "РЕЗЮМЕ"],
+    links: [
+      { label: "GITHUB", href: "https://github.com/aStormspirit" },
+      { label: "LINKEDIN", href: "https://linkedin.com/in/your_username" },
+      { label: "TWITTER", href: "https://x.com/your_username" },
+      { label: "RESUME", href: "/resume.pdf" },
+    ],
   },
   bottomNav: {
     home: "ГЛАВНАЯ",
