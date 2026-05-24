@@ -1,20 +1,24 @@
-const LINKS = ["GITHUB", "LINKEDIN", "TWITTER", "RESUME"] as const;
+import type { SiteMessages } from "@/messages/en";
 
-export default function Footer() {
+type FooterProps = {
+  messages: SiteMessages["footer"];
+};
+
+export default function Footer({ messages }: FooterProps) {
   return (
-    <footer className="bg-black border-t border-white/10 py-[48px]">
+    <footer className="hidden md:block bg-black border-t border-white/10 py-[48px]">
       <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between">
         <span className="font-[family-name:var(--font-space-grotesk)] font-bold text-[12px] text-[#f59e0b] tracking-[0.1em] uppercase">
-          © 2024 ARCHITECT_PORTFOLIO // SYSTEM_STABLE
+          {messages.copyright}
         </span>
         <div className="flex gap-8">
-          {LINKS.map((link) => (
+          {messages.links.map((link) => (
             <a
-              key={link}
-              href="#"
+              key={link.label}
+              href={link.href}
               className="font-[family-name:var(--font-space-grotesk)] text-[12px] text-white/40 tracking-[0.1em] uppercase hover:text-white/70 transition-colors"
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>
