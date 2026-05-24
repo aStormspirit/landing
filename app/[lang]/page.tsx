@@ -7,11 +7,17 @@ import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Projects from "@/components/Projects";
 import TechStack from "@/components/TechStack";
-import { getMessages, isLocale } from "@/lib/i18n";
+import { getMessages, isLocale, locales } from "@/lib/i18n";
 
 type LangPageProps = {
   params: Promise<{ lang: string }>;
 };
+
+export function generateStaticParams() {
+  return locales.map((lang) => ({ lang }));
+}
+
+export const dynamicParams = false;
 
 export default async function LocalizedHome({ params }: LangPageProps) {
   const { lang } = await params;
