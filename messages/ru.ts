@@ -76,9 +76,9 @@ export const ruMessages: SiteMessages = {
   footer: {
     copyright: "© 2024 ARCHITECT_PORTFOLIO // SYSTEM_STABLE",
     links: [
-      { label: "GITHUB", href: "https://github.com/aStormspirit" },
-      { label: "LINKEDIN", href: "https://linkedin.com/in/your_username" },
-      { label: "TWITTER", href: "https://x.com/your_username" },
+      { label: "GITHUB", href: "https://github.com/aStormspirit"},
+      { label: "LINKEDIN", href: "https://www.linkedin.com/in/vladimir-shinkarenko-87b9b3278/" },
+      { label: "TELEGRAM", href: "https://t.me/shinkadev" },
       { label: "RESUME", href: "/resume.pdf" },
     ],
   },

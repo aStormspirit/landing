@@ -107,9 +107,20 @@ export default function Navbar({ lang, messages }: NavbarProps) {
             </div>
           </nav>
 
-          {/* Mobile: circular avatar */}
-          <div className="md:hidden border border-[rgba(245,158,11,0.3)] rounded-full size-8 overflow-hidden shrink-0">
-            <img src={AVATAR} alt="Avatar" className="w-full h-full object-cover" />
+          {/* Mobile: language switcher + avatar */}
+          <div className="md:hidden flex items-center gap-3">
+            <Link
+              href={`${targetPath}${hash}`}
+              aria-label={`${messages.languageLabel}: ${targetLocale.toUpperCase()}`}
+              title={`${messages.languageLabel}: ${targetLocale.toUpperCase()}`}
+              className="inline-flex items-center gap-1 font-[family-name:var(--font-space-grotesk)] text-[13px] text-white/80 hover:text-[#ffb800] transition-colors"
+            >
+              <span aria-hidden className="text-[16px] leading-none">{targetFlag}</span>
+              <span className="uppercase tracking-wide">{targetLabel}</span>
+            </Link>
+            <div className="border border-[rgba(245,158,11,0.3)] rounded-full size-8 overflow-hidden shrink-0">
+              <img src={AVATAR} alt="Avatar" className="w-full h-full object-cover" />
+            </div>
           </div>
         </div>
       </header>
@@ -132,18 +143,6 @@ export default function Navbar({ lang, messages }: NavbarProps) {
                 {item.label}
               </a>
             ))}
-            <div className="flex items-center justify-end py-3 border-b border-white/5">
-              <Link
-                href={`${targetPath}${hash}`}
-                onClick={() => setOpen(false)}
-                aria-label={`${messages.languageLabel}: ${targetLocale.toUpperCase()}`}
-                title={`${messages.languageLabel}: ${targetLocale.toUpperCase()}`}
-                className="inline-flex items-center gap-2 font-[family-name:var(--font-space-grotesk)] text-[16px] text-white/80 hover:text-[#ffb800] transition-colors"
-              >
-                <span aria-hidden className="text-[20px] leading-none">{targetFlag}</span>
-                <span className="uppercase tracking-wide">{targetLabel}</span>
-              </Link>
-            </div>
             <a
               href="#contact"
               onClick={() => setOpen(false)}
