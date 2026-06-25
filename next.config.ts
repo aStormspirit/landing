@@ -4,11 +4,9 @@ const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   output: isProd ? "export" : undefined,
-  basePath: isProd ? "/landing" : "",
-  assetPrefix: isProd ? "/landing" : "",
-  // Bake basePath into the bundle so fetch() in client components resolves correctly on GH Pages
+  // Custom domain (shinkadev.org) serves from root, so no basePath/assetPrefix.
   env: {
-    NEXT_PUBLIC_BASE_PATH: isProd ? "/landing" : "",
+    NEXT_PUBLIC_BASE_PATH: "",
   },
   images: { unoptimized: true },
   trailingSlash: true,
