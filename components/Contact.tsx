@@ -21,7 +21,7 @@ export default function Contact({ messages }: ContactProps) {
             {messages.description}
           </p>
           <div className="flex flex-col gap-4 pt-2">
-            <a href="mailto:alex@rivera.dev" className="flex items-center gap-4 group">
+            <a href="mailto:vladimir@shinkadev.org" className="flex items-center gap-4 group">
               <div className="border border-white/10 flex items-center justify-center size-10 p-px group-hover:border-[#ffb800]/50 transition-colors shrink-0">
                 <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
                   <rect x="1" y="1" width="18" height="14" rx="1" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />

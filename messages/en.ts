@@ -61,7 +61,7 @@ export const enMessages = {
     titleLine2: "CONNECT.",
     description:
       "Available for high-stakes technical projects, system audits, and architectural consulting.",
-    email: "ALEX@RIVERA.DEV",
+    email: "vladimir@shinkadev.org",
     location: "SFO // HUB_NORTH",
     fullNameLabel: "FULL_NAME",
     fullNamePlaceholder: "USER_IDENTIFICATION",
@@ -75,8 +75,8 @@ export const enMessages = {
     copyright: "© 2024 ARCHITECT_PORTFOLIO // SYSTEM_STABLE",
     links: [
       { label: "GITHUB", href: "https://github.com/aStormspirit"},
-      { label: "LINKEDIN", href: "https://linkedin.com/in/your_username" },
-      { label: "TWITTER", href: "https://x.com/your_username" },
+      { label: "LINKEDIN", href: "https://www.linkedin.com/in/vladimir-shinkarenko-87b9b3278/" },
+      { label: "TELEGRAM", href: "https://t.me/shinkadev" },
       { label: "RESUME", href: "/resume.pdf" },
     ],
   },
