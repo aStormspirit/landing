@@ -1,0 +1,9 @@
+:HL["/_next/static/chunks/03o5789af5j7k.css","style"]
+:HL["/avatar.jpg","image"]
+:HL["/assets/icon-nodejs.svg","image"]
+:HL["/assets/icon-aws.svg","image"]
+:HL["/assets/icon-react.svg","image"]
+:HL["/assets/icon-postgresql.svg","image"]
+:HL["/assets/icon-docker.svg","image"]
+:HL["/assets/icon-oauth.svg","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"lang","param":{"type":"d","key":"ru","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"N_EAehI05OjiIqr92D6NZ"}
