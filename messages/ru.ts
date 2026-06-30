@@ -63,7 +63,7 @@ export const ruMessages: SiteMessages = {
     titleLine2: "СО МНОЙ.",
     description:
       "Открыт к технически сложным проектам, системным аудитам и архитектурному консалтингу.",
-    email: "ALEX@RIVERA.DEV",
+    email: "vladimir@shinkadev.org",
     location: "SFO // HUB_NORTH",
     fullNameLabel: "ИМЯ",
     fullNamePlaceholder: "ПРЕДСТАВЬТЕСЬ",
