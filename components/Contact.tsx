@@ -8,7 +8,7 @@ type ContactProps = {
 export default function Contact({ messages }: ContactProps) {
   return (
     <section id="contact" className="bg-[#201f1f] py-[80px] px-6">
-      <div className="max-w-[1280px] mx-auto flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-[80px] md:items-center">
+      <div className="w-[80%] max-w-none mx-auto flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-[80px] md:items-center">
 
         {/* Left: heading + links */}
         <div className="flex flex-col gap-4">

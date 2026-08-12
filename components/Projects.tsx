@@ -17,7 +17,7 @@ type ProjectsProps = {
 export default function Projects({ messages }: ProjectsProps) {
   return (
     <section id="projects" className="bg-[#0e0e0e] py-[80px]">
-      <div className="max-w-[1280px] mx-auto px-6 flex flex-col gap-[48px] md:gap-[80px]">
+      <div className="w-[80%] max-w-none mx-auto px-6 flex flex-col gap-[48px] md:gap-[80px]">
 
         {/* Section header */}
         <div className="flex items-end justify-between">
@@ -30,7 +30,9 @@ export default function Projects({ messages }: ProjectsProps) {
             </span>
           </div>
           <a
-            href="#"
+            href={messages.viewAllHref}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:flex items-center gap-2 font-[family-name:var(--font-space-grotesk)] text-white/40 text-[16px] hover:text-white/70 transition-colors"
           >
             {messages.viewAllRepos} <ArrowIcon />
@@ -50,9 +52,9 @@ export default function Projects({ messages }: ProjectsProps) {
             </div>
             <div className="p-6 flex flex-col gap-4">
               <div className="flex gap-2 flex-wrap">
-                <Tag label="CYBER_SEC" accent />
-                <Tag label="REACT" />
-                <Tag label="AWS" />
+                {messages.featured.tags.map((tag, i) => (
+                  <Tag key={tag} label={tag} accent={i === 0} />
+                ))}
               </div>
               <h3 className="font-[family-name:var(--font-space-grotesk)] text-white text-[16px] leading-[1.5]">
                 {messages.featured.title}
@@ -61,7 +63,9 @@ export default function Projects({ messages }: ProjectsProps) {
                 {messages.featured.description}
               </p>
               <a
-                href="#"
+                href={messages.featured.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#ffb800] text-[#6b4c00] font-[family-name:var(--font-space-grotesk)] text-[16px] px-6 py-3 inline-flex items-center gap-2 w-fit transition-[filter] hover:brightness-110"
               >
                 {messages.featured.caseStudy} <ArrowIcon />
@@ -75,30 +79,30 @@ export default function Projects({ messages }: ProjectsProps) {
             description={messages.second.description}
             dotColor="#fe6b00"
             tech={messages.second.tech}
-          />
-          <SmallCardMobile
-            label={messages.third.label}
-            title={messages.third.title}
-            description={messages.third.description}
-            dotColor="#ffb800"
-            tech={messages.third.tech}
+            liveUrl={messages.second.liveUrl}
+            repoUrl={messages.second.repoUrl}
           />
 
-          <a href="#" className="flex items-center justify-center gap-2 font-[family-name:var(--font-space-grotesk)] text-white/40 text-[16px] hover:text-white/70 transition-colors py-2">
+          <a
+            href={messages.viewAllHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 font-[family-name:var(--font-space-grotesk)] text-white/40 text-[16px] hover:text-white/70 transition-colors py-2"
+          >
             {messages.viewAllRepos} <ArrowIcon />
           </a>
         </div>
 
         {/* ── DESKTOP layout: bento grid ── */}
-        <div className="hidden md:grid grid-cols-3 gap-6" style={{ height: 800 }}>
-          <div className="col-span-2 row-span-2 glass relative overflow-hidden flex flex-col justify-end">
+        <div className="hidden md:grid grid-cols-3 gap-6" style={{ minHeight: 560 }}>
+          <div className="col-span-2 row-span-2 glass relative overflow-hidden flex flex-col justify-end min-h-[560px]">
             <ThreatMapLazy />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none z-[11]" />
             <div className="relative z-[12] p-8 flex flex-col gap-2">
-              <div className="flex gap-2">
-                <Tag label="CYBER_SEC" accent />
-                <Tag label="REACT" />
-                <Tag label="AWS" />
+              <div className="flex gap-2 flex-wrap">
+                {messages.featured.tags.map((tag, i) => (
+                  <Tag key={tag} label={tag} accent={i === 0} />
+                ))}
               </div>
               <h3 className="font-[family-name:var(--font-space-grotesk)] text-white text-[16px] leading-[1.5] mt-2">
                 {messages.featured.title}
@@ -107,7 +111,9 @@ export default function Projects({ messages }: ProjectsProps) {
                 {messages.featured.description}
               </p>
               <a
-                href="#"
+                href={messages.featured.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#ffb800] text-[#6b4c00] font-[family-name:var(--font-space-grotesk)] text-[16px] px-6 py-2 inline-flex items-center gap-2 w-fit transition-[filter] hover:brightness-110"
               >
                 {messages.featured.caseStudy} <ArrowIcon />
@@ -121,13 +127,8 @@ export default function Projects({ messages }: ProjectsProps) {
             description={messages.second.description}
             dotColor="#fe6b00"
             tech={messages.second.tech}
-          />
-          <SmallCard
-            label={messages.third.label}
-            title={messages.third.title}
-            description={messages.third.description}
-            dotColor="#ffb800"
-            tech={messages.third.tech}
+            liveUrl={messages.second.liveUrl}
+            repoUrl={messages.second.repoUrl}
           />
         </div>
 
@@ -150,11 +151,12 @@ function Tag({ label, accent = false }: { label: string; accent?: boolean }) {
   );
 }
 
-function SmallCard({ label, title, description, dotColor, tech }: {
+function SmallCard({ label, title, description, dotColor, tech, liveUrl, repoUrl }: {
   label: string; title: string; description: string; dotColor: string; tech: string;
+  liveUrl: string; repoUrl: string;
 }) {
   return (
-    <div className="glass flex flex-col justify-between p-[33px]">
+    <div className="glass flex flex-col justify-between p-[33px] row-span-2 min-h-[560px]">
       <div className="flex flex-col gap-[7px]">
         <span className="font-[family-name:var(--font-space-mono)] text-white/40 text-[12px]">{label}</span>
         <h3 className="font-[family-name:var(--font-space-grotesk)] text-white text-[16px] leading-[1.5] mt-[9px]">
@@ -163,13 +165,27 @@ function SmallCard({ label, title, description, dotColor, tech }: {
         <p className="font-[family-name:var(--font-inter)] text-[#d5c4ab] text-[16px] leading-[1.6]">
           {description}
         </p>
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 font-[family-name:var(--font-space-grotesk)] text-[#ffb800] text-[14px] hover:brightness-110 transition-[filter] w-fit"
+        >
+          {liveUrl.replace(/^https?:\/\//, "")} →
+        </a>
       </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="size-2 rounded-full" style={{ background: dotColor }} />
           <span className="font-[family-name:var(--font-space-mono)] text-white/60 text-[10px]">{tech}</span>
         </div>
-        <a href="#" className="text-white/40 hover:text-white/70 transition-colors">
+        <a
+          href={repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white/40 hover:text-white/70 transition-colors"
+          aria-label="GitHub repository"
+        >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M1 13L13 1M13 1H5M13 1V9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
@@ -179,8 +195,9 @@ function SmallCard({ label, title, description, dotColor, tech }: {
   );
 }
 
-function SmallCardMobile({ label, title, description, dotColor, tech }: {
+function SmallCardMobile({ label, title, description, dotColor, tech, liveUrl, repoUrl }: {
   label: string; title: string; description: string; dotColor: string; tech: string;
+  liveUrl: string; repoUrl: string;
 }) {
   return (
     <div
@@ -202,10 +219,31 @@ function SmallCardMobile({ label, title, description, dotColor, tech }: {
         <p className="font-[family-name:var(--font-inter)] text-[#d5c4ab] text-[16px] leading-[1.6]">
           {description}
         </p>
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-[family-name:var(--font-space-grotesk)] text-[#ffb800] text-[14px] hover:brightness-110 transition-[filter] w-fit"
+        >
+          {liveUrl.replace(/^https?:\/\//, "")} →
+        </a>
       </div>
-      <div className="flex items-center gap-2">
-        <div className="size-2 rounded-full" style={{ background: dotColor }} />
-        <span className="font-[family-name:var(--font-space-mono)] text-white/60 text-[10px]">{tech}</span>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="size-2 rounded-full" style={{ background: dotColor }} />
+          <span className="font-[family-name:var(--font-space-mono)] text-white/60 text-[10px]">{tech}</span>
+        </div>
+        <a
+          href={repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white/40 hover:text-white/70 transition-colors"
+          aria-label="GitHub repository"
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 13L13 1M13 1H5M13 1V9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+          </svg>
+        </a>
       </div>
     </div>
   );
