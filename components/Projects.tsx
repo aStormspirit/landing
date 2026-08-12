@@ -1,4 +1,5 @@
 "use client";
+import type { AnchorHTMLAttributes, ReactNode } from "react";
 import ThreatMapLazy from "./ThreatMapLazy";
 import type { SiteMessages } from "@/messages/en";
 
@@ -17,7 +18,7 @@ type ProjectsProps = {
 export default function Projects({ messages }: ProjectsProps) {
   return (
     <section id="projects" className="bg-[#0e0e0e] py-[80px]">
-      <div className="w-[80%] max-w-none mx-auto px-6 flex flex-col gap-[48px] md:gap-[80px]">
+      <div className="w-[80%] mx-auto px-6 flex flex-col gap-[48px] md:gap-[80px]">
 
         {/* Section header */}
         <div className="flex items-end justify-between">
@@ -41,7 +42,6 @@ export default function Projects({ messages }: ProjectsProps) {
 
         {/* ── MOBILE layout: vertical stack ── */}
         <div className="flex flex-col gap-6 md:hidden">
-          {/* Large feature card */}
           <div
             className="overflow-hidden"
             style={{ border: "1px solid rgba(255,184,0,0.1)", backdropFilter: "blur(6px)", background: "rgba(20,19,19,0.7)" }}
@@ -82,6 +82,15 @@ export default function Projects({ messages }: ProjectsProps) {
             liveUrl={messages.second.liveUrl}
             repoUrl={messages.second.repoUrl}
           />
+          <SmallCardMobile
+            label={messages.third.label}
+            title={messages.third.title}
+            description={messages.third.description}
+            dotColor="#ffb800"
+            tech={messages.third.tech}
+            liveUrl={messages.third.liveUrl}
+            repoUrl={messages.third.repoUrl}
+          />
 
           <a
             href={messages.viewAllHref}
@@ -94,8 +103,8 @@ export default function Projects({ messages }: ProjectsProps) {
         </div>
 
         {/* ── DESKTOP layout: bento grid ── */}
-        <div className="hidden md:grid grid-cols-3 gap-6" style={{ minHeight: 560 }}>
-          <div className="col-span-2 row-span-2 glass relative overflow-hidden flex flex-col justify-end min-h-[560px]">
+        <div className="hidden md:grid grid-cols-3 gap-6" style={{ height: 800 }}>
+          <div className="col-span-2 row-span-2 glass relative overflow-hidden flex flex-col justify-end">
             <ThreatMapLazy />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none z-[11]" />
             <div className="relative z-[12] p-8 flex flex-col gap-2">
@@ -130,6 +139,15 @@ export default function Projects({ messages }: ProjectsProps) {
             liveUrl={messages.second.liveUrl}
             repoUrl={messages.second.repoUrl}
           />
+          <SmallCard
+            label={messages.third.label}
+            title={messages.third.title}
+            description={messages.third.description}
+            dotColor="#ffb800"
+            tech={messages.third.tech}
+            liveUrl={messages.third.liveUrl}
+            repoUrl={messages.third.repoUrl}
+          />
         </div>
 
       </div>
@@ -151,12 +169,30 @@ function Tag({ label, accent = false }: { label: string; accent?: boolean }) {
   );
 }
 
+function ProjectLink({ href, className, children, ...rest }: {
+  href: string;
+  className?: string;
+  children: ReactNode;
+} & AnchorHTMLAttributes<HTMLAnchorElement>) {
+  const isPlaceholder = !href || href === "#";
+  if (isPlaceholder) {
+    return <span className={className}>{children}</span>;
+  }
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className} {...rest}>
+      {children}
+    </a>
+  );
+}
+
 function SmallCard({ label, title, description, dotColor, tech, liveUrl, repoUrl }: {
   label: string; title: string; description: string; dotColor: string; tech: string;
   liveUrl: string; repoUrl: string;
 }) {
+  const showLive = liveUrl && liveUrl !== "#";
+
   return (
-    <div className="glass flex flex-col justify-between p-[33px] row-span-2 min-h-[560px]">
+    <div className="glass flex flex-col justify-between p-[33px]">
       <div className="flex flex-col gap-[7px]">
         <span className="font-[family-name:var(--font-space-mono)] text-white/40 text-[12px]">{label}</span>
         <h3 className="font-[family-name:var(--font-space-grotesk)] text-white text-[16px] leading-[1.5] mt-[9px]">
@@ -165,31 +201,29 @@ function SmallCard({ label, title, description, dotColor, tech, liveUrl, repoUrl
         <p className="font-[family-name:var(--font-inter)] text-[#d5c4ab] text-[16px] leading-[1.6]">
           {description}
         </p>
-        <a
-          href={liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 font-[family-name:var(--font-space-grotesk)] text-[#ffb800] text-[14px] hover:brightness-110 transition-[filter] w-fit"
-        >
-          {liveUrl.replace(/^https?:\/\//, "")} →
-        </a>
+        {showLive && (
+          <ProjectLink
+            href={liveUrl}
+            className="mt-4 font-[family-name:var(--font-space-grotesk)] text-[#ffb800] text-[14px] hover:brightness-110 transition-[filter] w-fit"
+          >
+            {liveUrl.replace(/^https?:\/\//, "")} →
+          </ProjectLink>
+        )}
       </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="size-2 rounded-full" style={{ background: dotColor }} />
           <span className="font-[family-name:var(--font-space-mono)] text-white/60 text-[10px]">{tech}</span>
         </div>
-        <a
+        <ProjectLink
           href={repoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
           className="text-white/40 hover:text-white/70 transition-colors"
           aria-label="GitHub repository"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M1 13L13 1M13 1H5M13 1V9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
-        </a>
+        </ProjectLink>
       </div>
     </div>
   );
@@ -199,6 +233,8 @@ function SmallCardMobile({ label, title, description, dotColor, tech, liveUrl, r
   label: string; title: string; description: string; dotColor: string; tech: string;
   liveUrl: string; repoUrl: string;
 }) {
+  const showLive = liveUrl && liveUrl !== "#";
+
   return (
     <div
       className="flex flex-col justify-between p-6 gap-4"
@@ -219,31 +255,29 @@ function SmallCardMobile({ label, title, description, dotColor, tech, liveUrl, r
         <p className="font-[family-name:var(--font-inter)] text-[#d5c4ab] text-[16px] leading-[1.6]">
           {description}
         </p>
-        <a
-          href={liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-[family-name:var(--font-space-grotesk)] text-[#ffb800] text-[14px] hover:brightness-110 transition-[filter] w-fit"
-        >
-          {liveUrl.replace(/^https?:\/\//, "")} →
-        </a>
+        {showLive && (
+          <ProjectLink
+            href={liveUrl}
+            className="font-[family-name:var(--font-space-grotesk)] text-[#ffb800] text-[14px] hover:brightness-110 transition-[filter] w-fit"
+          >
+            {liveUrl.replace(/^https?:\/\//, "")} →
+          </ProjectLink>
+        )}
       </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="size-2 rounded-full" style={{ background: dotColor }} />
           <span className="font-[family-name:var(--font-space-mono)] text-white/60 text-[10px]">{tech}</span>
         </div>
-        <a
+        <ProjectLink
           href={repoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
           className="text-white/40 hover:text-white/70 transition-colors"
           aria-label="GitHub repository"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M1 13L13 1M13 1H5M13 1V9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
-        </a>
+        </ProjectLink>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ type TechStackProps = {
 export default function TechStack({ heading }: TechStackProps) {
   return (
     <section id="stack" className="bg-[#131313] py-[80px]">
-      <div className="w-[80%] max-w-none mx-auto px-6 flex flex-col gap-8 md:gap-[80px]">
+      <div className="w-[80%] mx-auto px-6 flex flex-col gap-8 md:gap-[80px]">
 
         <div className="flex flex-col items-center gap-4">
           <h2 className="font-[family-name:var(--font-space-grotesk)] font-bold text-white text-[30px] md:text-[40px] tracking-[-0.01em] uppercase">

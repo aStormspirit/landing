@@ -21,7 +21,7 @@ export default function Hero({ messages }: HeroProps) {
         <div className="scroll-line w-px h-12 bg-gradient-to-b from-[#ffb800] to-transparent" />
       </div>
 
-      <div className="relative z-10 w-[80%] max-w-none mx-auto px-6">
+      <div className="relative z-10 w-[80%] mx-auto px-6">
         <div className="max-w-[896px] flex flex-col gap-[14px]">
 
           {/* Status badge */}
