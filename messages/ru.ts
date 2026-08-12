@@ -55,6 +55,14 @@ export const ruMessages: SiteMessages = {
       liveUrl: "https://ticket-bot.vov4ik-lab.online",
       repoUrl: "https://github.com/aStormspirit/AI-ticket-resolve",
     },
+    third: {
+      label: "ПРОЕКТ_03",
+      title: "COMING_SOON",
+      description: "Следующий деплой в пайплайне. Слот зарезервирован под будущую production-систему.",
+      tech: "TBD",
+      liveUrl: "#",
+      repoUrl: "#",
+    },
   },
   techStack: {
     heading: "ТЕХ_СТЕК",

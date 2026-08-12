@@ -53,6 +53,14 @@ export const enMessages = {
       liveUrl: "https://ticket-bot.vov4ik-lab.online",
       repoUrl: "https://github.com/aStormspirit/AI-ticket-resolve",
     },
+    third: {
+      label: "PROJECT_03",
+      title: "COMING_SOON",
+      description: "Next deployment in the pipeline. Slot reserved for an upcoming production system.",
+      tech: "TBD",
+      liveUrl: "#",
+      repoUrl: "#",
+    },
   },
   techStack: {
     heading: "THE_TECH_STACK",
