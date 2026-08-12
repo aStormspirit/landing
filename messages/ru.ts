@@ -36,23 +36,24 @@ export const ruMessages: SiteMessages = {
     heading: "КЛЮЧЕВЫЕ_РАБОТЫ",
     subheading: "РАЗВЕРНУТЫЕ_РЕШЕНИЯ_v4.2",
     viewAllRepos: "ВСЕ_РЕПОЗИТОРИИ",
+    viewAllHref: "https://github.com/aStormspirit",
     featured: {
-      title: "ИНФРАСТРУКТУРА_NEURAL_SHIELD",
+      title: "SERVICE_DESK",
       description:
-        "Высокопроизводительный дашборд мониторинга безопасности, обрабатывающий 2.4 млн событий в секунду с визуализацией без задержек.",
-      caseStudy: "КЕЙС_СТАДИ",
+        "Cloud-native helpdesk: FastAPI backend, TypeScript frontend, PostgreSQL и Kubernetes на AWS EKS — заявки, роли и интеграции с мессенджерами.",
+      caseStudy: "ОТКРЫТЬ_ДЕМО",
+      liveUrl: "https://helpdesk.vov4ik-lab.online",
+      repoUrl: "https://github.com/aStormspirit/service-desk",
+      tags: ["PYTHON", "TYPESCRIPT", "K8S"],
     },
     second: {
       label: "ПРОЕКТ_02",
-      title: "CLOUD_STRATOS",
-      description: "Автоматизированный AWS-пайплайн для multi-region развертывания, сокративший lead time на 75%.",
-      tech: "TERRAFORM",
-    },
-    third: {
-      label: "ПРОЕКТ_03",
-      title: "KUBE_MESH",
-      description: "Оркестрация service mesh для микросервисной среды на базе Istio.",
-      tech: "KUBERNETES",
+      title: "AI_TICKET_RESOLVE",
+      description:
+        "LLM-агент, который классифицирует обращения поддержки, решает типовые проблемы через инструменты и эскалирует сложные случаи операторам с контекстом.",
+      tech: "AI / PYTHON",
+      liveUrl: "https://ticket-bot.vov4ik-lab.online",
+      repoUrl: "https://github.com/aStormspirit/AI-ticket-resolve",
     },
   },
   techStack: {

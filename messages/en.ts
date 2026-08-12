@@ -34,23 +34,24 @@ export const enMessages = {
     heading: "KEY_WORK",
     subheading: "DEPLOYED_SOLUTIONS_v4.2",
     viewAllRepos: "VIEW_ALL_REPOS",
+    viewAllHref: "https://github.com/aStormspirit",
     featured: {
-      title: "NEURAL_SHIELD INFRASTRUCTURE",
+      title: "SERVICE_DESK",
       description:
-        "A high-performance security monitoring dashboard capable of processing 2.4 million events per second with zero-latency visualization.",
-      caseStudy: "CASE_STUDY",
+        "Cloud-native helpdesk: FastAPI backend, TypeScript frontend, PostgreSQL, and Kubernetes on AWS EKS — tickets, roles, and messaging integrations.",
+      caseStudy: "OPEN_DEMO",
+      liveUrl: "https://helpdesk.vov4ik-lab.online",
+      repoUrl: "https://github.com/aStormspirit/service-desk",
+      tags: ["PYTHON", "TYPESCRIPT", "K8S"],
     },
     second: {
       label: "PROJECT_02",
-      title: "CLOUD_STRATOS",
-      description: "Automated multi-region AWS deployment pipeline reducing lead time by 75%.",
-      tech: "TERRAFORM",
-    },
-    third: {
-      label: "PROJECT_03",
-      title: "KUBE_MESH",
-      description: "Service mesh orchestration for microservices environment with Istio.",
-      tech: "KUBERNETES",
+      title: "AI_TICKET_RESOLVE",
+      description:
+        "LLM agent that classifies support tickets, auto-resolves common issues via tools, and escalates hard cases to operators with full context.",
+      tech: "AI / PYTHON",
+      liveUrl: "https://ticket-bot.vov4ik-lab.online",
+      repoUrl: "https://github.com/aStormspirit/AI-ticket-resolve",
     },
   },
   techStack: {

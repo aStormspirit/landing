@@ -1,9 +1,9 @@
 const ICONS: { name: string; src: string; w: number; h: number }[] = [
-  { name: "NODE.JS",    src: "/assets/icon-nodejs.svg",     w: 25, h: 20 },
+  { name: "PYTHON",     src: "/assets/icon-python.svg",     w: 24, h: 24 },
   { name: "AWS",        src: "/assets/icon-aws.svg",        w: 27, h: 20 },
-  { name: "REACT",      src: "/assets/icon-react.svg",      w: 25, h: 20 },
+  { name: "TYPESCRIPT", src: "/assets/icon-typescript.svg", w: 24, h: 24 },
   { name: "POSTGRESQL", src: "/assets/icon-postgresql.svg", w: 22, h: 22 },
-  { name: "DOCKER",     src: "/assets/icon-docker.svg",     w: 22, h: 22 },
+  { name: "K8S",        src: "/assets/icon-k8s.svg",        w: 24, h: 24 },
   { name: "OAUTH 2.0",  src: "/assets/icon-oauth.svg",      w: 20, h: 25 },
 ];
 
@@ -14,7 +14,7 @@ type TechStackProps = {
 export default function TechStack({ heading }: TechStackProps) {
   return (
     <section id="stack" className="bg-[#131313] py-[80px]">
-      <div className="max-w-[1280px] mx-auto px-6 flex flex-col gap-8 md:gap-[80px]">
+      <div className="w-[80%] max-w-none mx-auto px-6 flex flex-col gap-8 md:gap-[80px]">
 
         <div className="flex flex-col items-center gap-4">
           <h2 className="font-[family-name:var(--font-space-grotesk)] font-bold text-white text-[30px] md:text-[40px] tracking-[-0.01em] uppercase">
