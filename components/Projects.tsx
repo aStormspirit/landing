@@ -18,7 +18,7 @@ type ProjectsProps = {
 export default function Projects({ messages }: ProjectsProps) {
   return (
     <section id="projects" className="bg-[#0e0e0e] py-[80px]">
-      <div className="w-[80%] mx-auto px-6 flex flex-col gap-[48px] md:gap-[80px]">
+      <div className="w-full md:w-[80%] max-w-[1536px] mx-auto px-6 flex flex-col gap-[48px] md:gap-[80px]">
 
         {/* Section header */}
         <div className="flex items-end justify-between">

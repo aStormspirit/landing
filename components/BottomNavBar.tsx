@@ -76,8 +76,14 @@ export default function BottomNavBar({ lang, messages }: BottomNavProps) {
 
   return (
     <div
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 h-16 flex items-center border-t border-[#27272a]"
-      style={{ backdropFilter: "blur(12px)", background: "rgba(9,9,11,0.9)" }}
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 min-h-16 flex items-center border-t border-[#27272a]"
+      style={{
+        backdropFilter: "blur(12px)",
+        background: "rgba(9,9,11,0.9)",
+        paddingBottom: "env(safe-area-inset-bottom)",
+        paddingLeft: "env(safe-area-inset-left)",
+        paddingRight: "env(safe-area-inset-right)",
+      }}
     >
       {nav.map(({ id, label, href, Icon }) => {
         const isActive = active === id;

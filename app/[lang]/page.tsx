@@ -31,7 +31,7 @@ export default async function LocalizedHome({ params }: LangPageProps) {
   return (
     <>
       <Navbar lang={lang} messages={messages.navbar} />
-      <main className="pb-16 md:pb-0">
+      <main className="pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">
         <Hero messages={messages.hero} />
         <About messages={messages.about} />
         <Projects messages={messages.projects} />

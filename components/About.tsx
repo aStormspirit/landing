@@ -8,7 +8,7 @@ type AboutProps = {
 export default function About({ messages }: AboutProps) {
   return (
     <section id="about" className="bg-[#131313] py-[80px]">
-      <div className="w-[80%] mx-auto px-6 flex flex-col md:grid md:grid-cols-12 gap-8 md:gap-6 md:items-center">
+      <div className="w-full md:w-[80%] max-w-[1536px] mx-auto px-6 flex flex-col md:grid md:grid-cols-12 gap-8 md:gap-6 md:items-center">
 
         {/* Portrait */}
         <div className="md:col-span-5 relative glass p-[5px] w-full">

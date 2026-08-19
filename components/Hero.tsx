@@ -6,7 +6,7 @@ type HeroProps = {
 
 export default function Hero({ messages }: HeroProps) {
   return (
-    <section className="relative bg-[#131313] flex items-center justify-center overflow-hidden py-[100px] pt-[164px] pb-[100px] md:pb-[100px] min-h-screen">
+    <section className="relative bg-[#131313] flex items-center justify-center overflow-hidden py-[100px] pt-[164px] pb-[100px] md:pb-[100px] min-h-[100svh]">
       {/* Radial blob */}
       <div
         className="absolute size-[800px] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
@@ -21,7 +21,7 @@ export default function Hero({ messages }: HeroProps) {
         <div className="scroll-line w-px h-12 bg-gradient-to-b from-[#ffb800] to-transparent" />
       </div>
 
-      <div className="relative z-10 w-[80%] mx-auto px-6">
+      <div className="relative z-10 w-full md:w-[80%] max-w-[1536px] mx-auto px-6">
         <div className="max-w-[896px] flex flex-col gap-[14px]">
 
           {/* Status badge */}
@@ -34,10 +34,10 @@ export default function Hero({ messages }: HeroProps) {
 
           {/* Headline */}
           <div>
-            <h1 className="font-[family-name:var(--font-space-grotesk)] font-bold text-[48px] md:text-[64px] leading-[0.9] tracking-[-0.05em] text-white">
+            <h1 className="font-[family-name:var(--font-space-grotesk)] font-bold text-[clamp(2rem,10vw,64px)] leading-[0.9] tracking-[-0.05em] text-white text-balance">
               {messages.titleLine1}
             </h1>
-            <h1 className="font-[family-name:var(--font-space-grotesk)] font-bold text-[48px] md:text-[64px] leading-[0.9] tracking-[-0.05em] text-[#ffb800]">
+            <h1 className="font-[family-name:var(--font-space-grotesk)] font-bold text-[clamp(2rem,10vw,64px)] leading-[0.9] tracking-[-0.05em] text-[#ffb800] text-balance">
               {messages.titleLine2}
             </h1>
           </div>
