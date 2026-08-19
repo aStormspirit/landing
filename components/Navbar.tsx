@@ -55,7 +55,10 @@ export default function Navbar({ lang, messages }: NavbarProps) {
         className="fixed top-0 left-0 right-0 z-50 border-b border-[#27272a]"
         style={{ backdropFilter: "blur(6px)", background: "rgba(9,9,11,0.8)", boxShadow: "0 0 10px rgba(255,184,0,0.1)" }}
       >
-        <div className="w-[80%] mx-auto px-6 h-16 flex items-center justify-between">
+        <div
+          className="w-full md:w-[80%] max-w-[1536px] mx-auto px-6 h-16 flex items-center justify-between"
+          style={{ paddingLeft: "max(1.5rem, env(safe-area-inset-left))", paddingRight: "max(1.5rem, env(safe-area-inset-right))" }}
+        >
 
           {/* Left: hamburger (mobile) + logo */}
           <div className="flex items-center gap-4">
