@@ -3,12 +3,13 @@ import "./globals.css";
 
 const siteUrl = "https://shinkadev.org";
 const siteName = "Shinka.DEV";
-const description = "Website development, web applications, Telegram Mini Apps and bots.";
+const title = "Shinka.DEV — Разработка сайтов и веб-приложений";
+const description = "Разработка сайтов, веб-приложений, Telegram Mini Apps и ботов.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: siteName,
+    default: title,
     template: `%s | ${siteName}`,
   },
   description,
@@ -16,20 +17,21 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName,
-    title: siteName,
+    title,
     description,
+    locale: "ru_RU",
     images: [
       {
         url: "/avatar.jpg",
         width: 1092,
         height: 1280,
-        alt: "Shinkarenko Vladimir - Senior IT Specialist & Full-Stack Engineer",
+        alt: title,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteName,
+    title,
     description,
     images: ["/avatar.jpg"],
   },
@@ -45,7 +47,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body className="antialiased">{children}</body>
     </html>
   );
