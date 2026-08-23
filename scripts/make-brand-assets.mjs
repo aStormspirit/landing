@@ -100,7 +100,11 @@ function pngToIco(pngBuffer, dim) {
 await sharp(Buffer.from(ogSvg)).png().toFile(join(publicDir, "og-image.png"));
 await sharp(Buffer.from(iconSvg(512))).png().toFile(join(appDir, "icon.png"));
 
+// Small square icon used as og:image so Telegram renders the compact
+// (text + small right-side thumbnail) preview instead of the big card.
+await sharp(Buffer.from(iconSvg(256))).png().toFile(join(publicDir, "og-icon.png"));
+
 const icoPng = await sharp(Buffer.from(iconSvg(256))).png().toBuffer();
 writeFileSync(join(appDir, "favicon.ico"), pngToIco(icoPng, 256));
 
-console.log("wrote og-image.png, app/icon.png, app/favicon.ico");
+console.log("wrote og-image.png, public/og-icon.png, app/icon.png, app/favicon.ico");
