@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     images: [
       {
-        url: "/avatar.jpg",
-        width: 1092,
-        height: 1280,
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
         alt: title,
       },
     ],
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/avatar.jpg"],
+    images: ["/og-image.png"],
   },
 };
 
