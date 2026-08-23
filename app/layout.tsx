@@ -3,7 +3,7 @@ import "./globals.css";
 
 const siteUrl = "https://shinkadev.org";
 const siteName = "Shinka.DEV";
-const description = "Senior IT Specialist & Full-Stack Engineer";
+const description = "Website development, web applications, Telegram Mini Apps and bots.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

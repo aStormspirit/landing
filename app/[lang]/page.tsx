@@ -28,16 +28,18 @@ export async function generateMetadata({ params }: LangPageProps): Promise<Metad
   }
 
   const messages = getMessages(lang);
-  const description = messages.hero.description;
+  const title = messages.meta.title;
+  const description = messages.meta.description;
   const url = `/${lang}`;
   const image = {
     url: "/avatar.jpg",
     width: 1092,
     height: 1280,
-    alt: "Shinkarenko Vladimir - Senior IT Specialist & Full-Stack Engineer",
+    alt: title,
   };
 
   return {
+    title: { absolute: title },
     description,
     alternates: {
       canonical: url,
@@ -49,7 +51,7 @@ export async function generateMetadata({ params }: LangPageProps): Promise<Metad
     openGraph: {
       type: "website",
       siteName: "Shinka.DEV",
-      title: "Shinka.DEV",
+      title,
       url,
       description,
       locale: lang === "ru" ? "ru_RU" : "en_US",
@@ -57,7 +59,7 @@ export async function generateMetadata({ params }: LangPageProps): Promise<Metad
     },
     twitter: {
       card: "summary_large_image",
-      title: "Shinka.DEV",
+      title,
       description,
       images: [image.url],
     },
