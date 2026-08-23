@@ -1,4 +1,8 @@
 export const enMessages = {
+  meta: {
+    title: "Shinka.DEV — Website & Web App Development",
+    description: "Website development, web applications, Telegram Mini Apps and bots.",
+  },
   navbar: {
     brand: "Shinka.DEV",
     about: "About",

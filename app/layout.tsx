@@ -1,9 +1,38 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+const siteUrl = "https://shinkadev.org";
+const siteName = "Shinka.DEV";
+const description = "Website development, web applications, Telegram Mini Apps and bots.";
+
 export const metadata: Metadata = {
-  title: "Shinka.DEV",
-  description: "Senior IT Specialist & Full-Stack Engineer",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
+  description,
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName,
+    title: siteName,
+    description,
+    images: [
+      {
+        url: "/avatar.jpg",
+        width: 1092,
+        height: 1280,
+        alt: "Shinkarenko Vladimir - Senior IT Specialist & Full-Stack Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description,
+    images: ["/avatar.jpg"],
+  },
 };
 
 export const viewport: Viewport = {

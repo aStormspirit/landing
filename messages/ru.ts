@@ -1,6 +1,10 @@
 import type { SiteMessages } from "./en";
 
 export const ruMessages: SiteMessages = {
+  meta: {
+    title: "Shinka.DEV — Разработка сайтов и веб-приложений",
+    description: "Разработка сайтов, веб-приложений, Telegram Mini Apps и ботов.",
+  },
   navbar: {
     brand: "Shinka.DEV",
     about: "Обо мне",

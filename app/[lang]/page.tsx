@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import About from "@/components/About";
 import BottomNavBar from "@/components/BottomNavBar";
@@ -18,6 +19,52 @@ export function generateStaticParams() {
 }
 
 export const dynamicParams = false;
+
+export async function generateMetadata({ params }: LangPageProps): Promise<Metadata> {
+  const { lang } = await params;
+
+  if (!isLocale(lang)) {
+    return {};
+  }
+
+  const messages = getMessages(lang);
+  const title = messages.meta.title;
+  const description = messages.meta.description;
+  const url = `/${lang}`;
+  const image = {
+    url: "/avatar.jpg",
+    width: 1092,
+    height: 1280,
+    alt: title,
+  };
+
+  return {
+    title: { absolute: title },
+    description,
+    alternates: {
+      canonical: url,
+      languages: {
+        en: "/en",
+        ru: "/ru",
+      },
+    },
+    openGraph: {
+      type: "website",
+      siteName: "Shinka.DEV",
+      title,
+      url,
+      description,
+      locale: lang === "ru" ? "ru_RU" : "en_US",
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image.url],
+    },
+  };
+}
 
 export default async function LocalizedHome({ params }: LangPageProps) {
   const { lang } = await params;
