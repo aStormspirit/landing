@@ -81,11 +81,11 @@ function pngToIco(pngBuffer, dim) {
 await sharp(Buffer.from(iconSvg(512))).png().toFile(join(appDir, "icon.png"));
 
 // Compact square icon (kept for favicon / optional use). Link previews use
-// public/og-portrait.png (portrait photo).
+// public/og-thumb.png (square portrait) with twitter:card=summary.
 await sharp(Buffer.from(iconSvg(256))).png().toFile(join(publicDir, "og-icon.png"));
 
 const icoPng = await sharp(Buffer.from(iconSvg(256))).png().toBuffer();
 writeFileSync(join(appDir, "favicon.ico"), pngToIco(icoPng, 256));
 
 console.log("wrote public/og-icon.png, app/icon.png, app/favicon.ico");
-console.log("note: link preview image is public/og-portrait.png");
+console.log("note: link preview image is public/og-thumb.png");
