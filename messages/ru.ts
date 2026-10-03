@@ -2,8 +2,8 @@ import type { SiteMessages } from "./en";
 
 export const ruMessages: SiteMessages = {
   meta: {
-    title: "Shinka.DEV — Разработка сайтов и веб-приложений",
-    description: "Разработка сайтов, веб-приложений, Telegram Mini Apps и ботов.",
+    title: "Shinka.DEV — Разработка приложений, AI интеграций и cloud-native решений",
+    description: "Владимир Шинкаренко - AI engineer и Full-Stack разработчик.",
   },
   navbar: {
     brand: "Shinka.DEV",
@@ -18,10 +18,10 @@ export const ruMessages: SiteMessages = {
   hero: {
     scroll: "Скролл",
     status: "СИСТЕМА: АКТИВНА",
-    titleLine1: "АРХИТЕКТУРА",
-    titleLine2: "ЦИФРОВЫХ ЭКОСИСТЕМ",
+    titleLine1: "ИНЖЕНЕР",
+    titleLine2: "ЦИФРОВЫХ РЕШЕНИЙ",
     description:
-      "Шинкаренко Владимир - Senior IT Specialist и Full-Stack Engineer. Специализируюсь на высокопроизводительной инфраструктуре, cloud-native решениях и программных системах с инженерной точностью.",
+      "Шинкаренко Владимир - AI engineer и Full-Stack разработчик. Специализируюсь на приложениях, AI интеграциях и cloud-native решениях.",
     viewProjects: "СМОТРЕТЬ_ПРОЕКТЫ",
     downloadResume: "СКАЧАТЬ_РЕЗЮМЕ",
   },
@@ -30,11 +30,11 @@ export const ruMessages: SiteMessages = {
     sectionTitle: "ИНЖЕНЕР",
     yearsOfExperience: "ЛЕТ\nОПЫТА",
     description:
-      "Я соединяю сложную техническую инфраструктуру и бесшовный пользовательский опыт. Мой подход построен на эстетике CAD-чертежей: каждая строка кода и каждый серверный узел размещаются осознанно и точно.",
+      "Я решаю бизнес-задачи с помощью технологий и инноваций. Помогаю компаниям экономить время и ресурсы.",
     specializationLabel: "// СПЕЦИАЛИЗАЦИЯ",
-    specializationValue: "Облачная архитектура и DevOps-автоматизация",
+    specializationValue: "Приложения, AI интеграции и cloud-native решения",
     philosophyLabel: "// ФИЛОСОФИЯ",
-    philosophyValue: "Производительность - не опция, а фундамент.",
+    philosophyValue: "Технологии - не опция, а инструмент.",
   },
   projects: {
     heading: "КЛЮЧЕВЫЕ_РАБОТЫ",
