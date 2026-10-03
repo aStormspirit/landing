@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: LangPageProps): Promise<Metad
   const description = messages.meta.description;
   const url = `/${lang}`;
   const image = {
-    url: "/og-image.png",
+    url: "/og-portrait.png",
     width: 1200,
     height: 630,
     alt: title,

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-portrait.png",
         width: 1200,
         height: 630,
         alt: title,
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/og-image.png"],
+    images: ["/og-portrait.png"],
   },
 };
 

@@ -81,11 +81,11 @@ function pngToIco(pngBuffer, dim) {
 await sharp(Buffer.from(iconSvg(512))).png().toFile(join(appDir, "icon.png"));
 
 // Compact square icon (kept for favicon / optional use). Link previews use
-// public/og-image.png generated from the portrait via scripts/remove-avatar-bg.py.
+// public/og-portrait.png (portrait photo).
 await sharp(Buffer.from(iconSvg(256))).png().toFile(join(publicDir, "og-icon.png"));
 
 const icoPng = await sharp(Buffer.from(iconSvg(256))).png().toBuffer();
 writeFileSync(join(appDir, "favicon.ico"), pngToIco(icoPng, 256));
 
 console.log("wrote public/og-icon.png, app/icon.png, app/favicon.ico");
-console.log("note: public/og-image.png is portrait-based — regenerate with scripts/remove-avatar-bg.py");
+console.log("note: link preview image is public/og-portrait.png");

@@ -2,7 +2,7 @@ import type { SiteMessages } from "./en";
 
 export const ruMessages: SiteMessages = {
   meta: {
-    title: "Shinka.DEV — Разработка приложений, AI интеграций и cloud-native решений",
+    title: "Владимир Шинкаренко — Разработчик приложений, AI интеграций и cloud-native решений",
     description: "Владимир Шинкаренко - AI engineer и Full-Stack разработчик.",
   },
   navbar: {
