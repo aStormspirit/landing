@@ -27,7 +27,7 @@ export const ruMessages: SiteMessages = {
   },
   about: {
     sectionIndex: "01/",
-    sectionTitle: "ИНЖЕНЕР",
+    sectionTitle: "AI-ИНЖЕНЕР",
     yearsOfExperience: "ЛЕТ\nОПЫТА",
     description:
       "Я решаю бизнес-задачи с помощью технологий и инноваций. Помогаю компаниям экономить время и ресурсы.",

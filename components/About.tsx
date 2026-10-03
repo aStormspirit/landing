@@ -10,10 +10,12 @@ export default function About({ messages }: AboutProps) {
     <section id="about" className="bg-[#131313] py-[80px]">
       <div className="w-full md:w-[80%] max-w-[1536px] mx-auto px-6 flex flex-col md:grid md:grid-cols-12 gap-8 md:gap-6 md:items-center">
 
-        {/* Portrait */}
-        <div className="md:col-span-5 relative glass p-[5px] w-full">
-          <div className="relative overflow-hidden h-[342px] md:h-[489px] w-full bg-[#a8a8ac]">
-            <img src={`${PORTRAIT}?v=4`} alt="Portrait" className="w-full h-full object-cover object-center" />
+        {/* Portrait — frame matches photo aspect ratio, no letterbox */}
+        <div className="md:col-span-5 relative w-full">
+          <div className="relative glass p-[5px] w-full">
+            <div className="relative overflow-hidden w-full aspect-[761/1024]">
+              <img src={`${PORTRAIT}?v=5`} alt="Portrait" className="block w-full h-full object-cover" />
+            </div>
           </div>
           {/* Years badge */}
           <div className="absolute bottom-0 right-0 bg-[#ffb800] p-4 md:p-6">
