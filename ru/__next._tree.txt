@@ -1,0 +1,9 @@
+:HL["/_next/static/chunks/0fpn~2~t1tfpb.css","style"]
+:HL["/avatar.png?v=5","image"]
+:HL["/assets/icon-python.svg","image"]
+:HL["/assets/icon-aws.svg","image"]
+:HL["/assets/icon-typescript.svg","image"]
+:HL["/assets/icon-postgresql.svg","image"]
+:HL["/assets/icon-k8s.svg","image"]
+:HL["/assets/icon-oauth.svg","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"lang","param":{"type":"d","key":"ru","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"m4LqY2U85PrwVVfm4WvTr"}
