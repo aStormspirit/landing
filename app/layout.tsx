@@ -22,18 +22,18 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     images: [
       {
-        url: "/og-icon.png",
-        width: 256,
-        height: 256,
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
         alt: title,
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description,
-    images: ["/og-icon.png"],
+    images: ["/og-image.png"],
   },
 };
 

@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 import type { SiteMessages } from "@/messages/en";
 
-const AVATAR = "/avatar.jpg";
+const AVATAR = "/avatar.png";
 
 type NavbarMessages = SiteMessages["navbar"];
 

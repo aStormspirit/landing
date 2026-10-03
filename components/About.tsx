@@ -1,5 +1,5 @@
 import type { SiteMessages } from "@/messages/en";
-const PORTRAIT = "/avatar.jpg";
+const PORTRAIT = "/avatar.png";
 
 type AboutProps = {
   messages: SiteMessages["about"];
@@ -12,8 +12,8 @@ export default function About({ messages }: AboutProps) {
 
         {/* Portrait */}
         <div className="md:col-span-5 relative glass p-[5px] w-full">
-          <div className="relative overflow-hidden h-[342px] md:h-[489px]">
-            <img src={PORTRAIT} alt="Portrait" className="w-full h-full object-cover grayscale" />
+          <div className="relative overflow-hidden h-[342px] md:h-[489px] bg-[#131313]">
+            <img src={PORTRAIT} alt="Portrait" className="w-full h-full object-cover object-top" />
           </div>
           {/* Years badge */}
           <div className="absolute bottom-0 right-0 bg-[#ffb800] p-4 md:p-6">

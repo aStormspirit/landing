@@ -51,25 +51,6 @@ const DEFS = `
     </filter>
   </defs>`;
 
-// ---- OG image 1200x630 ----
-const W = 1200, H = 630;
-const badgeSize = 220;
-const ogSvg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
-  ${DEFS}
-  <rect width="${W}" height="${H}" fill="url(#bg)"/>
-  <rect width="${W}" height="${H}" fill="url(#glow)"/>
-  <g filter="url(#shadow)" transform="translate(${(W - badgeSize) / 2}, 108)">
-    ${badge({ size: badgeSize })}
-  </g>
-  <text x="600" y="452" text-anchor="middle"
-        font-family="DejaVu Sans, Liberation Sans, sans-serif"
-        font-size="86" font-weight="bold" letter-spacing="-1"><tspan fill="#FFFFFF">Shinka</tspan><tspan fill="#ffb800">.DEV</tspan></text>
-  <text x="600" y="516" text-anchor="middle"
-        font-family="DejaVu Sans, Liberation Sans, sans-serif"
-        font-size="34" fill="#d5c4ab">Разработка сайтов и веб-приложений</text>
-</svg>`;
-
 // ---- Standalone icon (square) ----
 function iconSvg(size) {
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -97,14 +78,14 @@ function pngToIco(pngBuffer, dim) {
   return Buffer.concat([header, entry, pngBuffer]);
 }
 
-await sharp(Buffer.from(ogSvg)).png().toFile(join(publicDir, "og-image.png"));
 await sharp(Buffer.from(iconSvg(512))).png().toFile(join(appDir, "icon.png"));
 
-// Small square icon used as og:image so Telegram renders the compact
-// (text + small right-side thumbnail) preview instead of the big card.
+// Compact square icon (kept for favicon / optional use). Link previews use
+// public/og-image.png generated from the portrait via scripts/remove-avatar-bg.py.
 await sharp(Buffer.from(iconSvg(256))).png().toFile(join(publicDir, "og-icon.png"));
 
 const icoPng = await sharp(Buffer.from(iconSvg(256))).png().toBuffer();
 writeFileSync(join(appDir, "favicon.ico"), pngToIco(icoPng, 256));
 
-console.log("wrote og-image.png, public/og-icon.png, app/icon.png, app/favicon.ico");
+console.log("wrote public/og-icon.png, app/icon.png, app/favicon.ico");
+console.log("note: public/og-image.png is portrait-based — regenerate with scripts/remove-avatar-bg.py");
