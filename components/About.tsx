@@ -12,8 +12,8 @@ export default function About({ messages }: AboutProps) {
 
         {/* Portrait */}
         <div className="md:col-span-5 relative glass p-[5px] w-full">
-          <div className="relative overflow-hidden h-[342px] md:h-[489px] w-full bg-[#a8a8ac] flex items-center justify-center">
-            <img src={`${PORTRAIT}?v=2`} alt="Portrait" className="max-h-full max-w-full object-contain" />
+          <div className="relative overflow-hidden h-[342px] md:h-[489px] w-full bg-[#a8a8ac]">
+            <img src={`${PORTRAIT}?v=4`} alt="Portrait" className="w-full h-full object-cover object-center" />
           </div>
           {/* Years badge */}
           <div className="absolute bottom-0 right-0 bg-[#ffb800] p-4 md:p-6">
