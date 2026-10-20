@@ -30,14 +30,57 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@keyframes scrollFade {
-  0%   { opacity: 0.4; transform: scaleY(0.6); }
-  50%  { opacity: 0.8; transform: scaleY(1); }
-  100% { opacity: 0.4; transform: scaleY(0.6); }
+.hero-radial-bg {
+  background-color: #0e0e10;
+  background-image: radial-gradient(circle at 35% 45%, rgba(245, 166, 35, 0.055) 0%, rgba(14, 14, 16, 0.8) 55%, #0e0e10 100%);
 }
-.scroll-line {
-  animation: scrollFade 2s ease-in-out infinite;
-  transform-origin: top;
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 8px #f5a623;
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.85);
+    box-shadow: 0 0 2px #f5a623;
+  }
+}
+.animate-status-dot {
+  animation: pulse-dot 2.2s infinite ease-in-out;
+}
+
+@keyframes scroll-drop {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(22px);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+.scroll-indicator-line {
+  animation: scroll-drop 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes dialog-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.dialog-in { animation: dialog-in 180ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-status-dot,
+  .scroll-indicator-line,
+  .dialog-in {
+    animation: none;
+  }
 }
 
 .nav-link {
