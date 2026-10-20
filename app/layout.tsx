@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     description,
     images: ["/og-thumb.png"],
   },
+  verification: {
+    yandex: "d05547df0e2ac295",
+  },
 };
 
 export const viewport: Viewport = {
