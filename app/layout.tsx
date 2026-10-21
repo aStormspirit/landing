@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import YandexMetrika from "@/components/YandexMetrika";
 import "./globals.css";
 
 const siteUrl = "https://shinkadev.org";
@@ -52,7 +53,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <YandexMetrika />
+      </body>
     </html>
   );
 }
