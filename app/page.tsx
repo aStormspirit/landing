@@ -1,3 +1,7 @@
 export default function Home() {
-  return <meta httpEquiv="refresh" content="0; url=/ru/" />;
+  return (
+    <noscript>
+      <a href="/ru/">Shinka.DEV</a>
+    </noscript>
+  );
 }

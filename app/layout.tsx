@@ -53,6 +53,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var p=location.pathname;if(p==="/"||p===""){location.replace("/ru/"+location.search+location.hash)}})();`,
+          }}
+        />
+      </head>
       <body className="antialiased">
         <YandexMetrika />
         {children}
