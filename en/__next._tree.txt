@@ -1,0 +1,10 @@
+:HL["/_next/static/chunks/0aftymelgdqbm.css","style"]
+:HL["/avatar.png?v=5","image"]
+:HL["/assets/icon-python.svg","image"]
+:HL["/assets/icon-typescript.svg","image"]
+:HL["/assets/icon-postgresql.svg","image"]
+:HL["/assets/icon-react.svg","image"]
+:HL["/assets/icon-fastapi.svg","image"]
+:HL["/assets/icon-k3s.svg","image"]
+:HL["/assets/icon-ai.svg","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"lang","param":{"type":"d","key":"en","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"5h2B2Tvmr00kj3I4gA263"}
